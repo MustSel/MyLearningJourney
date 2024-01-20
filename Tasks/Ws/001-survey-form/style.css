@@ -1,0 +1,103 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url(./img/background_image-netflix.jpg) no-repeat center fixed;
+    background-size: cover;
+    color: white;
+    
+}
+
+#container{
+    background-color: rgba(0, 0, 0, 0.375);
+    margin: 10px 30px;
+    text-align: center;
+}
+
+
+
+#title{
+    font-family: "Bowlby One SC", cursive;
+    /* font-variant: small-caps; */
+}
+#description{
+    font-family: "Bowlby One SC", ;
+    
+}
+#survey-form{
+    background-color: rgba(0, 0, 0, 0.816);
+    width: 400px;
+    margin: 10px auto ;
+    padding-top: 5px;
+    padding-left: 20px ;
+    font-size: small;
+    /* text-align: left; */
+   
+}
+.box{
+    margin: 15px;
+    text-align: left;
+    
+}
+#name,
+#age,
+#email
+{
+    height: 35px;
+    width: 340px;
+    padding-left: 10px;
+}
+/* #age{
+    margin: 5px 0;
+    height: 35px;
+    width: 340px;
+    padding-left: 10px;
+}
+#email{
+    margin: 5px 0;
+    height: 35px;
+    width: 340px;
+    padding-left: 10px;
+} */
+
+#content-type{
+    width: 320px;
+    height: 25px;
+    padding-left: 10px;
+}
+
+#feedback{
+    margin: 10px 0 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    resize: none;
+}
+
+#submit{
+    background-color: red;
+    color: white;
+    margin: 0 0 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+    @font-face {
+        font-family: Bumpo Soft;
+        src: url(./fonts/BumpoSoft-Regular/BumpoSoft-Regular.ttf);
+      }
+
+
+
+
+
+
+
+
+
+
+
+

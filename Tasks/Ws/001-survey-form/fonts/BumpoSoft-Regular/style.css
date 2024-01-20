@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Bumpo Soft';
+    src: local('Bumpo Soft Regular'), local('Bumpo-Soft-Regular'),
+        url('BumpoSoft-Regular.woff2') format('woff2'),
+        url('BumpoSoft-Regular.woff') format('woff'),
+        url('BumpoSoft-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }

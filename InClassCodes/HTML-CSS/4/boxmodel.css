@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+
+    background-color: olive;
+    /* width: 450px;
+    height: 450px;  */
+}
+
+.div1{
+    background-color: aqua;
+    width: 150px;
+    height: 150px;
+    border: 15px solid black;
+    padding: 25px;
+    /* box-sizing: border-box; */
+}
+.div2{
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+    border: 15px solid black;
+    margin: px;
+    /* box-sizing: border-box; */
+    /* margin: 50px; */
+}
+.div3{
+    background-color: rgba(255, 0, 255, 0.705);
+    width: 150px;
+    height: 150px;
+    border: 50px solid black;
+    margin: 250px;
+
+    /* box-sizing: border-box; */
+    /* margin-top: -100px; */
+}
