@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="display.css">
+    <title>Display</title>
+    <style>
+        a{
+            background-color: aqua;
+            margin: 20px;
+            /* display: inline-block; */
+            padding: 20px;
+        }
+
+        button{
+            background-color: bisque;
+            /* margin: 20px; */
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        span{
+            background-color: orange;
+            display: block;
+            margin: 20px;
+            padding: 30px;
+        }
+
+        .box{
+            background-color: green;
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            text-align: center;
+        }
+        #box2{
+            background-color: darkorange;
+            /* display: none; */
+            /* visibility: hidden; */
+        }
+        #box22{
+            background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <!-- inline elements -->
+    <a href="#">Clarusway</a>
+    <button>Clarusway</button>
+    <span>I'm Span</span>
+
+
+    <!-- block elements -->
+    <div class="box">div1</div>
+    <div class="box" id="box2" onclick="this.style.visibility='hidden'" >div2</div>
+    <div class="box">div3</div>
+    <button onclick="box2.style.visibility='visible'">reset</button>
+    <br><br>
+    <div class="box">div1</div>
+    <div class="box" id="box22" onclick="this.style.display='none'">div2</div>
+    <div class="box">div3</div>
+    <button onclick="box22.style.display='inline-block'">reset</button>
+</body>
+</html>
