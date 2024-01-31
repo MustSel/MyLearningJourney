@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+    background-color: rgba(80, 105, 130, 0.815);
+}
+.container {
+  background-color: rgb(241, 238, 45);
+  margin: 50px auto;
+  padding: 10px;
+  width: 350px;
+  height: 650px;
+  /* border: 2px solid red; */
+  border-radius: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  
+
+  /* align-items: center; */
+  /* justify-content: center;  */
+}
+
+.container * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  
+}
+.display {
+  background-color: darkred;
+  width: 90%;
+  height: 40%;
+  margin: 12px auto;
+  /* border: 1px solid blue; */
+  border-radius: 25px;
+  flex-basis: 90%;
+  box-shadow: inset 3px 3px 5px;
+}
+
+.icEkran {
+  background-color: gray;
+  width: 80%;
+  height: 80%;
+  border-radius: 25px;
+  align-items: end;
+  font-size: 54px;
+  text-align: right;
+  justify-content: right;
+  padding: 10px;
+}
+
+.buttons {
+    display: flex;
+  /* width: 90%; */
+  height: 50%;
+  flex-basis: 100%;
+  
+}
+.buttons * {
+  width: 65px;
+  height: 55px;
+  border-radius: 15px;
+  font-size: 25px;
+  flex-shrink: 5;
+  
+}
+.satir {
+  flex-basis: 100%;
+  /* border: 2px solid red; */
+  margin-bottom: 0.4rem;
+  gap: 0.2rem;
+  
+}
+
+.satir_son{
+    flex-basis: 82%;
+}
+
+.ilk {
+  background-color: rgb(16, 18, 18);
+  color: white;
+  
+}
+
+.iki {
+  background-color: rgb(202, 6, 6);
+}
+
+.opps {
+  background-color: rgb(189, 201, 170);
+  color: blue;
+  font-size: 32px;
+}
+
+.iki_sifir {
+    flex-grow: 2;
+}
+
+.but{
+    box-shadow: 1px 1px 5px rgb(21, 2, 2);
+}
+.but:hover{
+    cursor: pointer;
+    opacity: 0.6;
+
+}
