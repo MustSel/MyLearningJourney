@@ -81,13 +81,39 @@ if ((g + h) % g && h < 15) {
 }
 
 // Quiz
-if ((21 % 6 && 14 % 2) || !false) {
-  console.log("hello");
-} else if ("3" + 4 > 33) {
-  console.log("ch16");
-} else {
-  console.log("world");
-}
+// if ((21 % 6 && 14 % 2) || !false) {
+//   console.log("hello");
+// } else if ("3" + 4 > 33) {
+//   console.log("ch16");
+// } else {
+//   console.log("world");
+// }
 
-console.log("deneme
-");
+
+//! SWITCH CASE
+
+let s1 = +prompt("ilk sayıyı giriniz:")
+let s2 = +prompt("ikinci sayıyı giriniz")
+let islem = prompt("Yapmak istediğiniz işlemi seçiniz :(+,-,*,/) ")
+
+let sonuc = 0; 
+
+switch (islem){
+  
+  case "+":
+    sonuc = s1 + s2
+    break;
+  case "-":
+    sonuc = s1 - s2
+    break;
+  case "*":
+    sonuc = s1 * s2
+    break;
+  case "/":
+    sonuc = s1 / s2
+    break;
+    default:
+      alert("yanlış işlem")
+      break
+}
+console.log(`sonuç: ${sonuc.toFixed(2)}`);
