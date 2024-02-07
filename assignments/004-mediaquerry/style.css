@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.allInOne {
+  /* background-color: bisque; */
+  width: 1280px;
+  margin: 25px auto;
+}
+
+.category {
+  width: 80%;
+  margin: 5px;
+  /* background-color: aquamarine; */
+  height: 20px;
+}
+
+.category a {
+  text-decoration: none;
+  color: #333;
+}
+
+.category .arrow {
+  color: orange;
+  font-weight: bolder;
+}
+
+.container {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  position: relative;
+}
+.img_slider {
+  max-width: 25rem;
+  position: relative;
+}
+.imageArea {
+  display: flex;
+  margin: 0 auto;
+  aspect-ratio: 4/6;
+  flex-grow: 2;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+.imageArea img {
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+.slider_nav {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.slider_nav a {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.55;
+  transition: opacity ease 250ms;
+}
+
+.slider_nav a:hover {
+  opacity: 1;
+}
+#img2,
+#img3,
+#img4 {
+  /* display: none; */
+}
+.imageArea .small_image1 {
+  width: 80px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.imageArea .small_image2 {
+  width: 80px;
+  position: absolute;
+  top: 40px;
+  left: 5px;
+}
+
+.productInfo {
+  background-color: blue;
+  flex-grow: 3;
+}
+
+.sellers {
+  background-color: greenyellow;
+  flex-grow: 1;
+}
