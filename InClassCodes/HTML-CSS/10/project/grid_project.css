@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 5rem repeat(6, 10rem);
+    grid-template-rows: repeat(6, 100px);
+
+}
+
+.content{
+    border: 1px solid black;
+
+}
+
+.content1{
+    background-color: bisque;
+    grid-area: 2/1/4/2;
+}
+
+.content2{
+    background-color: aquamarine;
+    grid-area: 1/2/3/4;
+    background-image: url("https://picsum.photos/id/168/600/400");
+    background-size: cover;
+    background-position: center;
+}
+
+.content3{
+    background-image: url("https://picsum.photos/id/862/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 2/3/3/4;
+}
+.content4{
+    background-color: aquamarine;
+    grid-area: 1/4/3/6;
+    background-image: url("https://picsum.photos/id/167/600/400");
+    background-size: cover;
+    background-position: center;
+}
+
+.content5{
+    background-image: url("https://picsum.photos/id/367/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 2/5/3/6;
+}
+.content6{
+    background-color: aquamarine;
+    grid-area: 1/6/3/8;
+    background-image: url("https://picsum.photos/id/168/600/400");
+    background-size: cover;
+    background-position: center;
+}
+
+.content7{
+    background-image: url("https://picsum.photos/id/653/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 2/7/3/8;
+}
+.content8{
+    background-image: url("https://picsum.photos/id/658/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 3/2/4/3;
+}
+.content9{
+    background-image: url("https://picsum.photos/id/657/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 3/3/4/4;
+}
+.content10{
+    background-image: url("https://picsum.photos/id/672/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 4/2/5/3;
+}
+.content11{
+    background-image: url("https://picsum.photos/id/837/600/400");
+    background-size: cover;
+    background-position: center;
+    grid-area: 4/3/5/4;
+}
+

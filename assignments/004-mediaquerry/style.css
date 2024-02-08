@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +10,8 @@
   /* background-color: bisque; */
   width: 1280px;
   margin: 25px auto;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 400;
 }
 
 .category {
@@ -31,11 +35,13 @@
   width: 100%;
   margin-top: 10px;
   display: flex;
+  gap: 1rem;
   position: relative;
 }
 .img_slider {
   max-width: 25rem;
   position: relative;
+  box-shadow: 2px 2px 4px;
 }
 .imageArea {
   display: flex;
@@ -92,11 +98,362 @@
 }
 
 .productInfo {
-  background-color: blue;
-  flex-grow: 3;
+  width: 50rem;
+  padding: 8px;
+  /* border: 2px solid red; */
+  /* flex-grow: 3; */
 }
 
-.sellers {
-  background-color: greenyellow;
-  flex-grow: 1;
+.productInfo .p1 {
+  font-size: 20px;
+  line-height: 26px;
+}
+.productInfo .p1 a {
+  color: black;
+  text-decoration: none;
+}
+
+.productInfo .p1 a:hover {
+  text-decoration: underline;
+}
+
+.comment {
+  margin: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 12px;
+}
+.stars img {
+  width: 100px;
+}
+
+.seperator {
+  font-weight: 900;
+}
+.reviews:hover,
+.q-a:hover,
+.fav:hover {
+  text-decoration: underline;
+  color: orange;
+}
+.reviews img {
+  width: 15px;
+}
+
+.price_box {
+  padding: 8px;
+  width: 50%;
+  border: 1px solid #bb0000;
+  border-radius: 10px;
+  color: #bb0000;
+  cursor: pointer;
+}
+
+.discount {
+  background-color: #feeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.price {
+  margin-top: 5px;
+  display: flex;
+  gap: 1rem;
+}
+.old_price {
+  color: gray;
+  text-decoration: line-through;
+  font-size: 20px;
+  line-height: 20px;
+}
+.new_price {
+  color: #bb0000;
+  font-size: 24px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.add_info {
+  margin-top: 7px;
+  width: 45%;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.time {
+  padding: 3px 8px 3px 4px;
+  height: 25px;
+  width: 85px;
+  background-color: #feeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 14px;
+  color: #bb0000;
+}
+
+.time i {
+  font-size: 12px;
+  line-height: 12px;
+}
+.price_info {
+  background-color: #fef4eb;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 5px;
+  font-size: 11px;
+  line-height: 14px;
+  padding: 3px 8px;
+}
+.top {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.452);
+  padding-bottom: 10px;
+}
+
+.chart {
+  margin: 10px 5px;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.add_chart {
+  width: 85%;
+  height: 48px;
+  background-color: #f27a1a;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  letter-spacing: 0.54px;
+  cursor: pointer;
+}
+.add_chart:hover {
+  background-color: #b84f0a;
+}
+.fav_all {
+  position: relative;
+}
+.add_fav_text {
+  opacity: 0;
+  position: absolute;
+  width: 120px;
+  color: #f27a1a;
+  left: -40px;
+  bottom: -25px;
+  transition: opacity 0.5s ease-in-out;
+  border: 1px solid rgb(227, 217, 217);
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.add_fav {
+  min-width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  /* box-shadow: 1px 1px 0.8px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  position: relative;
+}
+
+.fav_all:hover .add_fav_text {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.add_fav i {
+  font-size: 22px;
+  line-height: 22px;
+  color: gray;
+}
+.add_fav i:hover {
+  cursor: pointer;
+  color: #f27a1a;
+}
+
+.add_fav::after {
+  content: "Favorilere Ekle";
+  display: none;
+  width: 120px;
+  height: 50px;
+  color: #f27a1a;
+}
+.add_fav:hover .add_fav::after {
+  display: block;
+  position: absolute;
+  bottom: -10px;
+}
+
+.cargo1 {
+  background-color: #effbf5;
+  color: #3c413e;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  gap: 1rem;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.cargo2 {
+  background-color: #eafff3;
+  color: #404844;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  gap: 1rem;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.cargo2 span {
+  font-weight: 600;
+}
+.cargo2:hover {
+  color: #25a565;
+}
+.specs{
+  width: 100%;
+}
+.spec_details{
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 130px);
+  grid-template-rows: repeat(2, 80px);
+  gap: 1rem;
+
+}
+.specs p{
+  margin: 5px 10px 0;
+}
+
+.spec{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: left;
+  background-color: #F5F5F5;
+  padding: 5px;
+  border-radius: 5px;
+  gap: 1rem;
+}
+.spec7{
+  flex-direction: row;
+}
+.spe1{
+  font-size: 12px;
+}
+.spe2{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.aside {
+  width: 20rem;
+  border: 1px solid red;
+  padding: 5px;
+  /* flex-grow: 1; */
+}
+
+.invoice{
+  width: 15rem;
+  background-color: #ebf5ff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+padding: 8px;
+
+
+}
+
+.inv1{
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 8px;
+  gap: 1rem;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+.inv1 img{
+  width: 20px;
+}
+.inv2{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+}
+.inv2 a{
+text-decoration: none;
+}
+
+.campaign{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 8px 12px 8px 8px ;
+  border: 1px solid #E6E6E6;
+  border-radius: 10px;
+  gap: 1rem;
+}
+.campaign .carg{
+  padding: 9px;
+  background-color: #F5F5F5;
+  border-radius: 5PX;
+}
+.campaign i{
+  font-size: 16px;
+
+}
+.aside h5{
+  font-size: 11px;
+  line-height: 18px;
+  color: #999999;
+  margin: 10px auto;
+  letter-spacing: 0.65px;
+}
+
+.camp{
+  display: flex;
+  align-items: center;
+font-size: 12px;
+font-weight: 600;
+}
+.camp span:hover{
+  color: orange;
+  cursor: pointer;
 }
