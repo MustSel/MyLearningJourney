@@ -79,11 +79,7 @@
 .slider_nav a:hover {
   opacity: 1;
 }
-#img2,
-#img3,
-#img4 {
-  /* display: none; */
-}
+
 .imageArea .small_image1 {
   width: 80px;
   position: absolute;
