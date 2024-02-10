@@ -1,0 +1,71 @@
+
+
+.yazi{
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem auto;
+    width: 50vw;
+}
+
+.yazi1{
+   background-color: darkcyan; 
+   transform: rotateX(180deg);
+}
+
+.yazi2{
+   background-color: chocolate; 
+   transform: rotateY(180deg);
+}
+.yazi3{
+   background-color: cornflowerblue; 
+   /* transform: rotate(30deg);
+   transform-origin: left;
+   position: relative;
+   z-index: -1; */
+}
+.yazi3:active{
+    z-index: 1;
+    transform: rotate(45deg) scale(1.5);
+}
+.yazi4{
+   background-color: fuchsia; 
+   transform: scaleX(1.4);
+}
+.yazi5{
+   background-color: olive; 
+   transform: scaleY(2);
+}
+.yazi6{
+   background-color: darkgoldenrod; 
+}
+.yazi6:active{
+    transform: scale(3);
+}
+
+img{
+    transform: skewX(45deg);
+    transform: skewY(45deg);
+    transform: skew(30deg, 38deg);
+}
+
+.box{
+    background-color: crimson;
+    width: 100px;
+    height: 50px;
+    margin: 2px;
+}
+
+.x{
+    transform: translateX(50px);
+}
+
+.y{
+    background-color: magenta;
+    transform: translateY(120px);
+}
+
+.xy:active{
+    background-color: blue;
+    transform: translate(180px,50px);
+    transition:  ;
+}
