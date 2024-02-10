@@ -775,6 +775,9 @@
   .category {
     margin-bottom: 25px;
   }
+  .divg{
+    margin-left: 1px;
+  }
   .price_box {
     width: 80%;
   }
@@ -794,11 +797,11 @@
 
   .asd1 {
     font-size: 10px;
-    flex-basis: 45%;
+    flex-basis: 100%;
     margin-left: 5px;
   }
   .store {
-    flex-basis: 45%;
+    flex-basis: 100%;
   }
   .other_stores {
     flex-basis: 100%;
