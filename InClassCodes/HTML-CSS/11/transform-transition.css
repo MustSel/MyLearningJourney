@@ -1,5 +1,7 @@
 
-
+body{
+    height: 1400px;
+}
 .yazi{
     text-align: center;
     font-size: 2rem;
@@ -56,16 +58,49 @@ img{
 }
 
 .x{
-    transform: translateX(50px);
-}
+    transition-property: all;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
 
+
+}
+.x:active{
+    transform: rotate(360deg);
+    /* width: 300px; */
+}
 .y{
+    transition: all 2s ease-in-out;
+}
+.y:active{
     background-color: magenta;
     transform: translateY(120px);
+    height: 100px;
 }
 
 .xy:active{
     background-color: blue;
     transform: translate(180px,50px);
     transition:  ;
+}
+
+.btn-div{
+    
+    text-align: center;
+}
+
+.btn{
+    background-color: aqua;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:active{
+    background-color: red;
+    color: white;
+    transform: scale(.95);
+    
 }

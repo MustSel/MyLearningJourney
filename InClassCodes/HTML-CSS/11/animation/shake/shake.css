@@ -1,0 +1,42 @@
+
+
+div{
+    text-align: center;
+}
+
+div i{
+    font-size: 10rem;
+    color: darkgoldenrod;
+}
+
+
+.fa-bell{
+    animation: shake .1s ease-in-out  infinite alternate ;
+}
+
+@keyframes shake {
+    from{
+        transform: rotate(30deg);
+        transform-origin: top;
+    }
+
+    to{
+        transform: rotate(-30deg);
+        transform-origin: top;
+        color: orange;
+    }
+}
+
+.fa-dollar-sign{
+    animation: snake .4s ease-in-out infinite alternate;
+}
+
+@keyframes snake {
+    0%{
+        transform: rotate(0);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}

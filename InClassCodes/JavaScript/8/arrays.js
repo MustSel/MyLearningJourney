@@ -27,9 +27,9 @@ names[4] = "Veli"
 console.log(names);
 names[5]++
 console.log(names);
-
-//! arrays.js:30 Uncaught TypeError: Assignment to constant variable.
 // names = [4,6,7] 
+//! arrays.js:30 Uncaught TypeError: Assignment to constant variable.
+
 
 //! 2. Yöntem (Object Constructor)
 

@@ -45,7 +45,7 @@ console.log(deneme);  //? undefined
 
 //? Örnek
 
-const names = ["Mustafa", "Murat", "Ahmet", "Mustafa", "Ayşe", "canan"]
+const names = ["Mustafa", "Murat", "ali", "veli", "Mustafa", "Ayşe", "canan"]
 
 const copiedNames = names.map( (name) => name.toLowerCase() ); 
 console.log(copiedNames);
@@ -83,3 +83,13 @@ console.log(dusukMaaslar);
 
 const modifiyeMaaslar = maaslar.filter( (m) => 30000 <= m && m < 50000 ).map( (x) => x * 1.5 )  
 console.log(modifiyeMaaslar);
+
+
+//* ===================================================================
+//*                     REDUCE
+//* ===================================================================
+
+let numberlar = [40000,30000,20000,100000]
+const sumNumber = numberlar.reduce((a,b) => a+b)
+console.log("Toplam:", sumNumber);
+
