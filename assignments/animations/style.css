@@ -28,6 +28,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 .menu {
   margin-right: 2rem;
@@ -48,7 +49,7 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  height: 2px;
+  height: 3px;
   width: 0;
   background-color: #3498db;
   transition: width 0.3s ease, left 0.3s ease;
@@ -59,8 +60,14 @@
   left: 0;
 }
 
-.menu:hover .menu a {
-  color: #3498db; /* Link rengini değiştirebilirsiniz */
+.menu a:hover{
+  color: #3498db;
+}
+.menu_bars{
+  display: none;
+}
+.menu_all_med{
+  display: none;
 }
 
 .baslik {
@@ -68,11 +75,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 3em;
   color: brown;
 }
 .baslik h1 {
-  animation: baslik_move 1s ease-in-out 3;
+  animation: baslik_move 2.5s ease-in-out 3;
 }
 
 .cont {
@@ -95,9 +102,11 @@
 }
 
 .img_cont img {
-  width: 200px;
+  width: 23%;
   border-radius: 10px;
-  animation: img_move 3s ease-in infinite backwards;
+  transition: transform 2s ease-in-out;
+  animation: img_move 3s ease-in infinite forwards;
+  
 }
 
 .img_cont:hover img {
@@ -105,8 +114,13 @@
 }
 
 .img_cont img:hover {
-  transform: scale(1.7);
-  transition: all 2s;
+  transform: scale(1.7) ;
+  z-index: 1;
+  
+}
+
+.img_cont img:not(:hover){
+  transform: scale(1);
 }
 
 @keyframes img_move {
@@ -122,4 +136,26 @@
   to {
     transform: translateY(90px);
   }
+}
+
+@media screen and (max-width:450px) {
+  .menu_all{
+    display: none;
+  }
+
+  .menu_bars{
+    display: block;
+    font-size: 2rem;
+  }
+  .menu_bars:hover{
+    display: none;
+  }
+
+  .menu_bars:active .menu_all_med{
+    display: block;
+    font-size: 1rem;
+    
+    
+  }
+
 }
