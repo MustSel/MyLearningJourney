@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(./img/back.png) center fixed no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+
+.hak{
+  width: 20px;
+}
+
+
+@media screen and (max-width:768px) {
+  .box{
+    width: 90% !important;
+  }
+}
+@media screen and (max-width:1024px) {
+  .box{
+    width: 75% !important;
+  }
+}
+@media screen and (max-width:1200px) {
+  .box{
+    width: 60% !important;
+  }
+}

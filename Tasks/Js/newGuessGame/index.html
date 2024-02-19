@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guess Game</title>
+  </head>
+  <body>
+    <div class="card mx-auto mt-5 bg-secondary-subtle box" style="width: 30%">
+      <img src="./img/canyouguessme.webp" class="card-img-top" id="Image" alt="game" />
+      
+      <div class="card-body">
+        <h5 id="gameTitle" class="card-title mb-3">Welcome to Guess Game</h5>
+        <div id="rightsSection" class="rights d-flex gap-3 justify-content-center align-items-center mb-2">
+          <p id="hakDisplay">
+            You have <span id="hakValue">5</span> rights. You can change it.
+          </p>
+          <button class="bg-success hak" onclick="increaseHak()">
+            +
+          </button>
+          <button class="bg-danger hak" onclick="decreaseHak()">-</button>
+        </div>
+
+        <div class="input-group mb-3">
+          <input
+            type="number"
+            id="numberInput"
+            class="form-control"
+            placeholder="Please input a number(0-100)"
+            onkeydown="handleKeyPress(event)"
+          />
+          <button
+            class="btn btn-outline-secondary bg-danger-subtle"
+            type="button"
+            id="button-addon2"
+            onclick="assignUserNumber()"
+          >
+            Check
+          </button>
+        </div>
+        <div id="message" class="alert alert-primary" role="alert">let's see if you can make it!</div>
+      </div>
+      <button id="restartButton" class="btn btn-primary" onclick="restartGame()" style="display: none">Restart Game</button>
+
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="guess2.js"></script>
+  </body>
+</html>
