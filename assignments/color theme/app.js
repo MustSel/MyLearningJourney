@@ -90,3 +90,11 @@ btn2.onmouseout = () => {
   btn2.style.opacity = "0.5";
   backGroundChanger()
 };
+
+document.addEventListener("keydown", function(e){
+  // console.log(e)
+
+  if (e.key === "Enter") {
+      backGroundChanger()
+  }
+} )

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>Kelime Tahmin Oyunu</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>HOŞGELDİNİZ</h1>
+      <h2>Kelime Tahmin Oyunu</h2>
+      <form id="guess-form">
+        <table id="game-board">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+        <br />
+        <p id="game-info"></p>
+        <br />
+        <input type="text" id="guess-input" placeholder="Tahmininizi girin" />
+        <button id="check-btn" type="button">Tahmin Et</button>
+      </form>
+      <div class="guess">
+        <div class="row">
+          
+            <div class="col-6 fs-5 words">
+              Tahminler
+              <ul class="fs-6 guess-li"></ul>
+            </div>
+            <div class="col-6 fs-5 letters text-center">
+              Harfler
+              <div class="row">
+              <div class="col-4 fs-6 fw-lighter letters-green">
+                <p>Yeri Doğru</p>
+                <ul class="text-bg-success letters-li1"></ul>
+              </div>
+              <div class="col-4 fs-6 fw-lighter letters-yellow">
+                <p>Yeri Yanlış</p>
+                <ul class="text-bg-warning letters-li2"></ul>
+              </div>
+              <div class="col-4 fs-6 fw-lighter letters-gray">
+                <p>Yanlış</p>
+                <ul class="text-bg-secondary letters-li3"></ul>
+              </div>
+            </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+    <audio id="correct-sound" src="./sounds/applause.mp3"></audio>
+    <audio id="incorrect-sound" src="./sounds/lost.wav"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>
