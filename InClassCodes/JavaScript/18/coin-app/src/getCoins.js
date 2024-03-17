@@ -8,9 +8,10 @@ export const getCoins = async (keyword) => {
   
   
   const URL = `https://api.coinranking.com/v2/coins?search=${keyword}`;
+  
   const options = {
     headers: {
-      "x-access-token": import.meta.env.API_KEY,
+      "x-access-token": import.meta.env.VITE_API_KEY,
       
     },
   };
