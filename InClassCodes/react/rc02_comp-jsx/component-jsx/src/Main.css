@@ -1,0 +1,11 @@
+.par{
+    color: darkblue;
+    font-weight: 650;
+    background-color: blanchedalmond;
+}
+
+.img{
+    width: 480px;
+    border: 2px solid yellowgreen;
+    border-radius: 10px;
+}
