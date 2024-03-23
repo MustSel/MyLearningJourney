@@ -11,10 +11,10 @@ const displayCoinCard = (coin) => {
       confirmButtonText: "Cool",
     });
 
-    const SwalRemove = () => {
-      Swal.close();
-    };
-    setTimeout(SwalRemove, 2000);
+    // const SwalRemove = () => {
+    //   Swal.close();
+    // };
+    setTimeout(Swal.close, 2000);
   } else {
     addedCoins.push(coin.name);
 
@@ -47,9 +47,8 @@ const displayCoinCard = (coin) => {
 
     coinLi.querySelector(".remove-icon").addEventListener("click", () => {
       coinLi.remove();
+      addedCoins = addedCoins.filter((coinName) => coinName !== name);
     });
-
-    // console.log(addedCoins.includes(coin));
   }
 };
 
