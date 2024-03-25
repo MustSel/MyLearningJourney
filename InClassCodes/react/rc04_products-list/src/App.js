@@ -5,7 +5,7 @@ import "./App.scss"
 
 //? Component
 function App() {
- 
+ console.log(products)
   return (
     
     <div className="App">
