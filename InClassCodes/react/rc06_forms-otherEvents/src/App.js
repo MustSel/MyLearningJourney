@@ -1,15 +1,17 @@
 import Forms from "./components/1-forms/Forms"
 import KeyboardClipboard from "./components/2-keyboardClipboardEvents/KeyboardClipboard"
 import MouseEvent from "./components/3-mouseEvents/MouseEvent"
+import Container from "react-bootstrap/Container"
+
 
 function App() {
   return (
-    <div>
-      <Forms />
+    <Container className="mt-3">
+      {/* <Forms /> */}
 
-      <KeyboardClipboard />
+      {/* <KeyboardClipboard /> */}
       <MouseEvent />
-    </div>
+    </Container>
   )
 }
 
