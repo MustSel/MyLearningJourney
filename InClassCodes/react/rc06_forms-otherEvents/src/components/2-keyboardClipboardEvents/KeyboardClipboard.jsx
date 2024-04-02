@@ -20,7 +20,9 @@ const handleCopy = () => {
       onChange={(e)=> setInputData(e.target.value.toLocaleUpperCase()) } 
       value={inputData} 
       onKeyDown={(e)=>{
-        if(e.keyCode>47 & e.keyCode<58){
+        
+        if(Number(e.key)<10){
+          // console.log(e.key)
           alert("a nubmer pressed")
           e.preventDefault()
         }
@@ -39,11 +41,12 @@ const handleCopy = () => {
           cols="30"
           rows="10"
           onCopy={(e)=> {
-            alert("kopyalama yassah")
             e.preventDefault()
+            alert("kopyalama yassah")
           }}
           onCut={(e)=> alert("kestik")}
           onPaste={(e)=>{
+            console.log(e)
             e.target.style.fontFamily = "tahoma"
             e.target.style.fontSize = "1.5rem"
             e.target.style.color = "blue"
