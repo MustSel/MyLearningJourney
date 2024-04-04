@@ -1,7 +1,15 @@
 import { FaEdit } from "react-icons/fa"
 import { AiFillDelete } from "react-icons/ai"
+import axios from "axios"
+import EditModal from "./EditModal"
+import { useState } from "react"
 
-const TutorialList = ({tutorials}) => {
+const TutorialList = ({tutorials, getTutorials}) => {
+
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [editData, setEditData] = useState("")
   // const tutorials = [
   //   {
   //     id: 1,
@@ -14,6 +22,15 @@ const TutorialList = ({tutorials}) => {
   //     description: "JS library for UI design",
   //   },
   // ]
+
+  const deleteTutorial = async (id) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_URL}${id}/`)
+    } catch (error) {
+      console.log(error)
+    }
+    getTutorials()
+  }
 
   return (
     <div className="container mt-4">
@@ -41,11 +58,16 @@ const TutorialList = ({tutorials}) => {
                     size={20}
                     type="button"
                     className="me-2 text-warning"
+                    onClick={()=> {
+                      handleShow() 
+                      setEditData(item)}
+                    }
                   />
                   <AiFillDelete
                     size={22}
                     type="button"
                     className="text-danger "
+                    onClick={()=>deleteTutorial(id)}
                   />
                 </td>
               </tr>
@@ -53,6 +75,7 @@ const TutorialList = ({tutorials}) => {
           })}
         </tbody>
       </table>
+      <EditModal show={show}  handleClose={handleClose}  editData={editData} getTutorials={getTutorials}/>
     </div>
   )
 }
