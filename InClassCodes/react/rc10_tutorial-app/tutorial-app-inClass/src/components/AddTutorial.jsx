@@ -9,6 +9,7 @@ const AddTutorial = ({getTutorials}) => {
     e.preventDefault()
     //TODO post
     const newTutor = { title, description}
+    
     postTutorial(newTutor)
     setTitle("")
     setDescription("")
@@ -22,9 +23,12 @@ const AddTutorial = ({getTutorials}) => {
     } catch (error) {
       console.log(error)
     }
+    
     getTutorials()
+      
     
   }
+ 
   return (
     <div className="container text-center mt-4">
       <h1 className="display-6 text-danger">Add Your Tutorial</h1>
@@ -39,7 +43,7 @@ const AddTutorial = ({getTutorials}) => {
             id="title"
             placeholder="Enter your title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value) }
             required
           />
         </div>

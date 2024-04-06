@@ -10,6 +10,7 @@ const Home = () => {
     const res = await axios(process.env.REACT_APP_URL)
     
     setTutorials(res.data)
+   console.log("first")
   }
 
   useEffect(()=> {

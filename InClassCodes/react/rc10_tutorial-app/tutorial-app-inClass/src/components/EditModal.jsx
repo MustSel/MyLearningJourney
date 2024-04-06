@@ -11,20 +11,21 @@ function EditModal({ show, handleClose, editData, getTutorials }) {
     setTitle(editData.title);
     setDescription(editData.description);
   }, [editData]);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // //TODO post
-    const newTutor = { title, description };
-    putTutorial(editData.id, newTutor);
-    handleClose();
+    const newTutor = { title, description, id: editData.id };
+    putTutorial(newTutor);
+    handleClose()
     // setTitle("")
     // setDescription("")
   };
 
-  const putTutorial = async (id, data) => {
+  const putTutorial = async (data) => {
     try {
-      await axios.put(`${process.env.REACT_APP_URL}${id}/`, data);
+      await axios.patch(`${process.env.REACT_APP_URL}${data.id}/`, data);
     } catch (error) {
       console.log(error);
     }
