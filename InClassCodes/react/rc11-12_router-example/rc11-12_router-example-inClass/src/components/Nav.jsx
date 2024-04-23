@@ -1,6 +1,5 @@
-import logo from "../img/logo.png";
-import {Link} from "react-router-dom"
-
+import logo from "../img/logo.png"
+import { Link } from "react-router-dom"
 function Nav() {
   return (
     <nav className="navbar navbar-expand-md navbar-light">
@@ -44,7 +43,7 @@ function Nav() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Nav;
+export default Nav

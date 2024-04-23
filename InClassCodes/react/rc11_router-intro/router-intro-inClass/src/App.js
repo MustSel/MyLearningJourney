@@ -8,8 +8,9 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
+    <>
     <BrowserRouter>
-      <Nav />
+    <Nav />
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/instructors" element={<Instructors/>} />
@@ -18,8 +19,10 @@ function App() {
        
       </Routes>
 
-      <Footer />
     </BrowserRouter>
+      <Footer />
+    </>
+      
   );
 }
 
