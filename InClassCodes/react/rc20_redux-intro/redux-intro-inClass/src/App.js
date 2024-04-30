@@ -10,7 +10,7 @@ function App() {
       <Provider store={store}>
 
         <Counter />
-      {/* <Todo /> */}
+      <Todo />
       </Provider>
       
     </div>
