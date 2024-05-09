@@ -12,9 +12,10 @@ import { Form, Formik } from "formik";
 import { object, string } from "yup";
 // import { login } from "../services/useApiRequest";
 import useApiRequest from "../services/useApiRequest";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const Login = () => {
-  const {login} = useApiRequest()
+  const { login } = useApiRequest();
   const loginSchema = object({
     password: string()
       .required("şifresiz olmaz")
@@ -68,39 +69,74 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
-              login(values)
-              actions.resetForm()
-              actions.setSubmitting(false)
+              login(values);
+              actions.resetForm();
+              actions.setSubmitting(false);
             }}
           >
-            {({ values, handleChange, handleBlur, touched, errors,isSubmitting }) => (
+            {({
+              values,
+              handleChange,
+              handleBlur,
+              touched,
+              errors,
+              isSubmitting,
+            }) => (
               <Form>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  <TextField
-                    label="Email"
-                    name="email"
-                    id="email"
-                    type="email"
-                    variant="outlined"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.email && Boolean(errors.email)}
-                    helperText={touched.email && errors.email}
-                  />
-                  <TextField
-                    label="password"
-                    name="password"
-                    id="password"
-                    type="password"
-                    variant="outlined"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.password && Boolean(errors.password)}
-                    helperText={touched.password && errors.password}
-                  />
-                  <Button variant="contained" type="submit" disabled={isSubmitting}>
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                  >
+                    <Typography
+                      
+                      variant="body2"
+                    >
+                      test2@test.com
+                      <ContentCopyIcon onClick={() => {
+                        navigator.clipboard.writeText("test2@test.com");
+                      }}
+                      style={{ cursor: "pointer" }}/>
+                    </Typography>
+                    <TextField
+                      label="Email"
+                      name="email"
+                      id="email"
+                      type="email"
+                      variant="outlined"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.email && Boolean(errors.email)}
+                      helperText={touched.email && errors.email}
+                    />
+                    <Typography
+                      
+                      variant="body2"
+                    >
+                      Aa!12345
+                      <ContentCopyIcon onClick={() => {
+                        navigator.clipboard.writeText("Aa!12345");
+                      }}
+                      style={{ cursor: "pointer" }}/>
+                    </Typography>
+                    <TextField
+                      label="password"
+                      name="password"
+                      id="password"
+                      type="password"
+                      variant="outlined"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.password && Boolean(errors.password)}
+                      helperText={touched.password && errors.password}
+                    />
+                  </Box>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
                     Submit
                   </Button>
                 </Box>

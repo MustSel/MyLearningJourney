@@ -1,12 +1,13 @@
 import axios from "axios";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const useApiRequest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {token} = useSelector((state) => state.auth)
   const login = async (userData) => {
     // const BASE_URL ="https://10148.fullstack.clarusway.com"
     dispatch(fetchStart());
@@ -43,7 +44,9 @@ const useApiRequest = () => {
   const logout = async ()=> {
     dispatch(fetchStart())
     try {
-      const res = await axios( `${process.env.REACT_APP_BASE_URL}/auth/logout`
+      const res = await axios( `${process.env.REACT_APP_BASE_URL}/auth/logout`, {
+        headers: {Authorization: `Token ${token}`}
+      }
       )
       console.log(res)
       dispatch(logoutSuccess())
