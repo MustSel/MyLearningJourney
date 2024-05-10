@@ -18,7 +18,7 @@ const Brands = () => {
   const [open, setOpen] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [mode, setMode] = useState("new");
-  console.log(brands);
+  
 
   const handleEdit = (brand) => {
     setSelectedBrand(brand);
@@ -72,9 +72,7 @@ const Brands = () => {
                 <CardActions sx={{ flexGrow: 1, margin: "auto" }}>
                   <Button
                     onClick={() => {
-                      deleteDatas("brands", item._id).then(() =>
-                        getDatas("brands")
-                      );
+                      deleteDatas("brands", item._id)
                     }}
                     size="small"
                   >

@@ -28,9 +28,7 @@ const Products = () => {
   };
 
   const handleDelete = (id) => {
-    deleteDatas("products", id).then(() => {
-      getDatas("products");
-    });
+    deleteDatas("products", id)
   };
 
   const columns = [

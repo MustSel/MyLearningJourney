@@ -20,7 +20,7 @@ const getSlice = createSlice({
       },
       getDataSuccess: (state,{ payload }) => {
         state.loading = false
-        state[payload.key] = payload.data.data
+        state[payload.endpoint] = payload.data.data
         state.error = false
       },
       fetchFail: (state) => {

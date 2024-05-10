@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -51,7 +50,7 @@ export default function PurchaseModal({
   useEffect(() => {
     if (mode === "edit") {
         setPurchaseInfo({
-        firmId: purchase.firmId._id || "",
+        firmId: purchase.firmId ? purchase.firmId._id || "" : "",
         brandId: purchase.brandId._id || "",
         productId: purchase.productId._id || "",
         quantity: purchase.quantity || "",
@@ -70,13 +69,12 @@ export default function PurchaseModal({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setPurchaseInfo((prevInfo) => ({
       ...prevInfo,
       [name]: value,
     }));
   };
-  console.log(purchaseInfo);
+  
   const handleClose = () => {
     setOpen(false);
     setMode("new");
@@ -85,9 +83,9 @@ export default function PurchaseModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "edit") {
-      editDatas("purchases", purchaseInfo, purchase._id).then(() => getDatas("purchases"));
+      editDatas("purchases", purchaseInfo, purchase._id)
     } else {
-      postDatas("purchases", purchaseInfo).then(() => getDatas("purchases"));
+      postDatas("purchases", purchaseInfo)
     }
     handleClose();
   };
@@ -182,7 +180,7 @@ export default function PurchaseModal({
             onChange={handleChange}
           />
           <Button onClick={handleSubmit} variant="contained">
-            {mode === "edit" ? "Update Sale" : "Add Sale"}
+            {mode === "edit" ? "Update Purchase" : "Add Purchase"}
           </Button>
         </Box>
       </Modal>

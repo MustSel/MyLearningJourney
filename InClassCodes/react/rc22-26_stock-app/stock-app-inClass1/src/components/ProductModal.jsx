@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -37,29 +36,26 @@ export default function ProductModal({
   brands,
   categories,
 }) {
-
-    const navigate = useNavigate()  
+  const navigate = useNavigate();
   const { postDatas, getDatas, editDatas } = useStockRequest();
   const [productInfo, setProductInfo] = useState({
     categoryId: "",
     brandId: "",
     name: "",
-    
   });
 
   useEffect(() => {
     if (mode === "edit") {
-        setProductInfo({
+      setProductInfo({
         categoryId: product.categoryId._id || "",
         brandId: product.brandId._id || "",
         name: product.name || "",
-        
       });
     } else {
-        setProductInfo({
-            categoryId: "",
-            brandId: "",
-            name: "",
+      setProductInfo({
+        categoryId: "",
+        brandId: "",
+        name: "",
       });
     }
   }, [product, open]);
@@ -72,7 +68,7 @@ export default function ProductModal({
       [name]: value,
     }));
   };
-  console.log(productInfo);
+  
   const handleClose = () => {
     setOpen(false);
     setMode("new");
@@ -81,9 +77,9 @@ export default function ProductModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "edit") {
-      editDatas("products", productInfo, product._id).then(() => getDatas("products"));
+      editDatas("products", productInfo, product._id)
     } else {
-      postDatas("products", productInfo).then(() => getDatas("products"));
+      postDatas("products", productInfo)
     }
     handleClose();
   };
@@ -97,7 +93,7 @@ export default function ProductModal({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Box sx={{ minWidth: 120 }}>
+          <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Categories</InputLabel>
               <Select
@@ -108,7 +104,6 @@ export default function ProductModal({
                 label="Category"
                 onChange={handleChange}
               >
-                
                 {categories?.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -128,7 +123,12 @@ export default function ProductModal({
                 label="Brand"
                 onChange={handleChange}
               >
-                <MenuItem sx={{borderBottom:"1px solid grey"}} onClick={()=> navigate("/stock/brands")}>Add New Brand</MenuItem>
+                <MenuItem
+                  sx={{ borderBottom: "1px solid grey" }}
+                  onClick={() => navigate("/stock/brands")}
+                >
+                  Add New Brand
+                </MenuItem>
                 {brands?.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -137,7 +137,7 @@ export default function ProductModal({
               </Select>
             </FormControl>
           </Box>
-          
+
           <TextField
             required
             label="Product Name"
@@ -148,7 +148,7 @@ export default function ProductModal({
             value={productInfo.name}
             onChange={handleChange}
           />
-          
+
           <Button onClick={handleSubmit} variant="contained">
             {mode === "edit" ? "Update Product" : "Add Product"}
           </Button>

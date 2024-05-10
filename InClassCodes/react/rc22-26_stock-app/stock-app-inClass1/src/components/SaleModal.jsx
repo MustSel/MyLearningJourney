@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -37,8 +36,7 @@ export default function SaleModal({
   brands,
   products,
 }) {
-
-    const navigate = useNavigate()  
+  const navigate = useNavigate();
   const { postDatas, getDatas, editDatas } = useStockRequest();
   const [saleInfo, setSaleInfo] = useState({
     brandId: "",
@@ -67,13 +65,12 @@ export default function SaleModal({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setSaleInfo((prevInfo) => ({
       ...prevInfo,
       [name]: value,
     }));
   };
-  console.log(saleInfo);
+
   const handleClose = () => {
     setOpen(false);
     setMode("new");
@@ -82,9 +79,9 @@ export default function SaleModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "edit") {
-      editDatas("sales", saleInfo, sale._id).then(() => getDatas("sales"));
+      editDatas("sales", saleInfo, sale._id);
     } else {
-      postDatas("sales", saleInfo).then(() => getDatas("sales"));
+      postDatas("sales", saleInfo);
     }
     handleClose();
   };
@@ -109,7 +106,12 @@ export default function SaleModal({
                 label="Brand"
                 onChange={handleChange}
               >
-                <MenuItem sx={{borderBottom:"1px solid grey"}} onClick={()=> navigate("/stock/brands")}>Add New Brand</MenuItem>
+                <MenuItem
+                  sx={{ borderBottom: "1px solid grey" }}
+                  onClick={() => navigate("/stock/brands")}
+                >
+                  Add New Brand
+                </MenuItem>
                 {brands?.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -129,7 +131,12 @@ export default function SaleModal({
                 label="Product"
                 onChange={handleChange}
               >
-                <MenuItem sx={{borderBottom:"1px solid grey"}} onClick={()=> navigate("/stock/products")}>Add New Product</MenuItem>
+                <MenuItem
+                  sx={{ borderBottom: "1px solid grey" }}
+                  onClick={() => navigate("/stock/products")}
+                >
+                  Add New Product
+                </MenuItem>
                 {products?.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}

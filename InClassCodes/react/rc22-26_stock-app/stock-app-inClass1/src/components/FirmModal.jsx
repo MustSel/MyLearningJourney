@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -24,7 +23,7 @@ const style = {
 };
 
 export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
-  const { postDatas, getDatas, editDatas } = useStockRequest();
+  const { postDatas, editDatas } = useStockRequest();
   const [firmInfo, setFirmInfo] = useState({
     name: "",
     phone: "",
@@ -69,9 +68,9 @@ export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "edit") {
-      editDatas("firms", firmInfo, firm._id).then(() => getDatas("firms"));
+      editDatas("firms", firmInfo, firm._id)
     } else {
-      postDatas("firms", firmInfo).then(() => getDatas("firms"));
+      postDatas("firms", firmInfo)
     }
     handleClose();
   };

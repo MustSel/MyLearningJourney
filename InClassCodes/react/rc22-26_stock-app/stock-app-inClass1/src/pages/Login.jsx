@@ -12,7 +12,7 @@ import { Form, Formik } from "formik";
 import { object, string } from "yup";
 // import { login } from "../services/useApiRequest";
 import useApiRequest from "../services/useApiRequest";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const Login = () => {
   const { login } = useApiRequest();
@@ -87,15 +87,14 @@ const Login = () => {
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                   >
-                    <Typography
-                      
-                      variant="body2"
-                    >
+                    <Typography variant="body2">
                       test2@test.com
-                      <ContentCopyIcon onClick={() => {
-                        navigator.clipboard.writeText("test2@test.com");
-                      }}
-                      style={{ cursor: "pointer" }}/>
+                      <ContentCopyIcon
+                        onClick={() => {
+                          navigator.clipboard.writeText("test2@test.com");
+                        }}
+                        style={{ cursor: "pointer" }}
+                      />
                     </Typography>
                     <TextField
                       label="Email"
@@ -109,15 +108,14 @@ const Login = () => {
                       error={touched.email && Boolean(errors.email)}
                       helperText={touched.email && errors.email}
                     />
-                    <Typography
-                      
-                      variant="body2"
-                    >
+                    <Typography variant="body2">
                       Aa!12345
-                      <ContentCopyIcon onClick={() => {
-                        navigator.clipboard.writeText("Aa!12345");
-                      }}
-                      style={{ cursor: "pointer" }}/>
+                      <ContentCopyIcon
+                        onClick={() => {
+                          navigator.clipboard.writeText("Aa!12345");
+                        }}
+                        style={{ cursor: "pointer" }}
+                      />
                     </Typography>
                     <TextField
                       label="password"

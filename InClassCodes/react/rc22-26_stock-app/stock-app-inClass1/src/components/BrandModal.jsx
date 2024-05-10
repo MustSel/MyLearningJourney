@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -29,21 +28,18 @@ export default function BrandModal({ open, setOpen, brand, mode, setMode }) {
     name: "",
     image: "",
   });
-  
 
   useEffect(() => {
     if (mode === "edit") {
-        setBrandInfo({
+      setBrandInfo({
         name: brand.name || "",
         image: brand.image || "",
       });
-      
     } else {
-        setBrandInfo({
+      setBrandInfo({
         name: "",
         image: "",
       });
-      
     }
   }, [brand, open]);
 
@@ -57,15 +53,15 @@ export default function BrandModal({ open, setOpen, brand, mode, setMode }) {
 
   const handleClose = () => {
     setOpen(false);
-    setMode("new")
+    setMode("new");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (mode === "edit") {
-      editDatas("brands", brandInfo, brand._id).then(() => getDatas("brands"));
+      editDatas("brands", brandInfo, brand._id);
     } else {
-      postDatas("brands", brandInfo).then(() => getDatas("brands"));
+      postDatas("brands", brandInfo);
     }
     handleClose();
   };
@@ -99,7 +95,7 @@ export default function BrandModal({ open, setOpen, brand, mode, setMode }) {
             value={brandInfo.image}
             onChange={handleChange}
           />
-          
+
           <Button onClick={handleSubmit} variant="contained">
             {mode === "edit" ? "Update Brand" : "Add Brand"}
           </Button>

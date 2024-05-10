@@ -18,12 +18,12 @@ const Firms = () => {
   const [open, setOpen] = useState(false);
   const [selectedFirm, setSelectedFirm] = useState(null);
   const [mode, setMode] = useState("new");
-  console.log(firms);
+  
 
   const handleEdit = (firm) => {
     setSelectedFirm(firm);
     setOpen(true);
-    setMode("edit")
+    setMode("edit");
   };
 
   useEffect(() => {
@@ -33,13 +33,23 @@ const Firms = () => {
   return (
     <>
       <h2>Firms</h2>
-      <Button onClick={() => {
-        setOpen(true)
-        setMode("new")
-        }} sx={{ mb: "10px" }} variant="contained">
+      <Button
+        onClick={() => {
+          setOpen(true);
+          setMode("new");
+        }}
+        sx={{ mb: "10px" }}
+        variant="contained"
+      >
         New Firm
       </Button>
-      <FirmModal mode={mode} setMode={setMode} open={open} setOpen={setOpen} firm={selectedFirm} />
+      <FirmModal
+        mode={mode}
+        setMode={setMode}
+        open={open}
+        setOpen={setOpen}
+        firm={selectedFirm}
+      />
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           {firms?.map((item) => (
@@ -74,23 +84,21 @@ const Firms = () => {
                       {item.address}
                     </Typography>
                   </Tooltip>
+                  <Typography variant="body2" color="text.secondary" noWrap>
+                      {item.phone}
+                    </Typography>
                 </CardContent>
                 <CardActions sx={{ flexGrow: 1, margin: "auto" }}>
                   <Button
-                    onClick={() => {
-                      deleteDatas("firms", item._id).then(() =>
-                        getDatas("firms")
-                      );
-                    }}
+                    onClick={() =>deleteDatas("firms", item._id)}
                     size="small"
                   >
                     <DeleteOutlineIcon />
                   </Button>
-                  <Button onClick={()=>handleEdit(item)} size="small">
+                  <Button onClick={() => handleEdit(item)} size="small">
                     <EditIcon />
                   </Button>
                 </CardActions>
-                
               </Card>
             </Grid>
           ))}
