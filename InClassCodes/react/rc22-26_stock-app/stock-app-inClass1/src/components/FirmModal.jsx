@@ -24,12 +24,7 @@ const style = {
 
 export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
   const { postDatas, editDatas } = useStockRequest();
-  const [firmInfo, setFirmInfo] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    image: "",
-  });
+  const [firmInfo, setFirmInfo] = useState({});
   
 
   useEffect(() => {
@@ -50,14 +45,14 @@ export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
       });
       
     }
-  }, [firm, open]);
+  }, [open]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFirmInfo((prevInfo) => ({
-      ...prevInfo,
+    setFirmInfo({
+      ...firmInfo,
       [name]: value,
-    }));
+    });
   };
 
   const handleClose = () => {
@@ -99,7 +94,7 @@ export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
             label="Phone"
             name="phone"
             id="phone"
-            type="text"
+            type="tel"
             variant="outlined"
             value={firmInfo.phone}
             onChange={handleChange}
@@ -115,7 +110,7 @@ export default function FirmModal({ open, setOpen, firm, mode, setMode }) {
             onChange={handleChange}
           />
           <TextField
-            required 
+            // required 
             type="url"
             label="Image"
             name="image"

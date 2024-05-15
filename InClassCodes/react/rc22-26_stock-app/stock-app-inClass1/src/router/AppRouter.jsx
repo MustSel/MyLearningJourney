@@ -10,6 +10,7 @@ import Brands from "../pages/Brands";
 import Products from "../pages/Products";
 import Purchases from "../pages/Purchases";
 import Home from "../pages/Home";
+import ProductsEditable from "../pages/ProductsEditbale";
 
 const AppRouter = () => {
   return (

@@ -18,7 +18,7 @@ const Firms = () => {
   const [open, setOpen] = useState(false);
   const [selectedFirm, setSelectedFirm] = useState(null);
   const [mode, setMode] = useState("new");
-  
+ 
 
   const handleEdit = (firm) => {
     setSelectedFirm(firm);
@@ -29,7 +29,7 @@ const Firms = () => {
   useEffect(() => {
     getDatas("firms");
   }, []);
-
+  
   return (
     <>
       <h2>Firms</h2>
@@ -67,9 +67,9 @@ const Firms = () => {
               >
                 <CardMedia
                   component="img"
-                  alt={item.name}
+                  alt={item.image ? "Firm Image" : "No Image Available"}
                   height="140"
-                  image={item.image}
+                  image={item.image || "https://nebosan.com.tr/wp-content/uploads/2018/06/no-image.jpg"}
                   sx={{
                     objectFit: "contain",
                     mt: "15px",
@@ -85,12 +85,12 @@ const Firms = () => {
                     </Typography>
                   </Tooltip>
                   <Typography variant="body2" color="text.secondary" noWrap>
-                      {item.phone}
-                    </Typography>
+                    {item.phone}
+                  </Typography>
                 </CardContent>
                 <CardActions sx={{ flexGrow: 1, margin: "auto" }}>
                   <Button
-                    onClick={() =>deleteDatas("firms", item._id)}
+                    onClick={() => deleteDatas("firms", item._id)}
                     size="small"
                   >
                     <DeleteOutlineIcon />

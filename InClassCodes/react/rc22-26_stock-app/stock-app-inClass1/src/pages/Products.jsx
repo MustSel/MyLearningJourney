@@ -1,4 +1,4 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import useStockRequest from '../services/useStockRequest';
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
@@ -34,7 +34,7 @@ const Products = () => {
   const columns = [
     { field: 'id', headerName: 'ID', flex: 1 },
     { field: 'category', headerName: 'Category', flex: 1 },
-    { field: 'brand', headerName: 'Brand', flex: 1 },
+    { field: 'brand', headerName: 'Brand', flex: 1, editable: true, },
     { field: 'name', headerName: 'Name', flex: 1 },
     { field: 'stock', headerName: 'Stock', flex: 1 },
     {
@@ -75,7 +75,8 @@ const Products = () => {
         pageSizeOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
         autoHeight
-        
+        disableRowSelectionOnClick
+        slots={{ toolbar: GridToolbar }}
       />
     </div>
     </>
