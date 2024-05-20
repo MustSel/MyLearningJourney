@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import useStockRequest from "../services/useStockRequest";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
@@ -94,7 +94,8 @@ const Sales = () => {
           rows={rows}
           columns={columns}
           pageSizeOptions={[5, 10, 20, 50, 100]}
-          // checkboxSelection
+          disableRowSelectionOnClick
+          slots={{ toolbar: GridToolbar }}
           autoHeight
         />
       </div>
