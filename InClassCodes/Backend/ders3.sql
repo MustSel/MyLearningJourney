@@ -1,1 +1,0 @@
-SELECT * FROM Track WHERE "Composer" LIKE '%Queen%';
