@@ -2,22 +2,26 @@
 
 const { Schema, model } = require('mongoose')
 
-// Password Encypt (PBKDF2 Method)
+// // Password Encypt (PBKDF2 Method)
 
-const crypto = require('node:crypto')
+// const crypto = require('node:crypto')
 
-// Parameters:
+// // Parameters:
 
-const keyCode = process.env.SECRET_KEY // Şifreleme anahtarı
-const loopCount = 10000  // Döngü sayısı
-const charCount = 32  // write 32 for 64
-const encType = 'sha512'  // Şifreleme algoritması
+// const keyCode = process.env.SECRET_KEY // Şifreleme anahtarı
+// const loopCount = 10000  // Döngü sayısı
+// const charCount = 32  // write 32 for 64
+// const encType = 'sha512'  // Şifreleme algoritması
 
 
-//Return encrypted password:
-const passwordEncrypt = function (password) {
-    return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
-}
+// //Return encrypted password:
+// const passwordEncrypt = function (password) {
+//     return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
+// }
+
+
+// call from file:
+const passwordEncrypt = require('../helpers/passwordEncrypt')
 
 const UserSchema = new Schema({
 

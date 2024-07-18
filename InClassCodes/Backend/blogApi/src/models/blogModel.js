@@ -68,6 +68,12 @@ const BlogCategory = mongoose.model('BlogCategory', BlogCategorySchema)
 // BlogPost Schema:
 const BlogPostSchema = new mongoose.Schema({
     // _id
+
+    userId: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     categoryId: {
         type: mongoose.Schema.Types.ObjectId, // hexadecimal formatta 
         ref: 'BlogCategory', // Id hangi modele ait

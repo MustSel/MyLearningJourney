@@ -27,10 +27,19 @@ require('express-async-errors')
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- */
+// npm i cookie-session
+const session = require('cookie-session')
 
+app.use(session({
+    secret: process.env.SECRET_KEY, // Cookie datası şifreleme anahtarı
+    // maxAge: 1000 * 60 * 60 * 24 * 3 // miliSeconds
+}))
 /* ------------------------------------------------------- */
 app.all('/', (req, res) => {
-    res.send('WELCOME TO BLOG API')
+    res.send({
+        session:req.session,
+        message: 'WELCOME TO BLOG API'
+    })
 })
 /* ------------------------------------------------------- */
 
@@ -38,9 +47,10 @@ app.all('/', (req, res) => {
 
 app.use('/blog', require('./src/routes/blogRouter'))
 app.use('/user', require('./src/routes/userRouter'))
+app.use('/auth', require('./src/routes/authRouter'))
 
 // Catch Errors:
-app.use(require('./src/errorHandler'))
+app.use(require('./src/middlewares/errorHandler'))
 
 /* ------------------------------------------------------- */
 
