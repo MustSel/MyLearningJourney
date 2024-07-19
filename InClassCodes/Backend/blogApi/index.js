@@ -35,10 +35,17 @@ app.use(session({
     // maxAge: 1000 * 60 * 60 * 24 * 3 // miliSeconds
 }))
 /* ------------------------------------------------------- */
+// Middleware for check user data from session:
+
+app.use(require('./src/middlewares/userControl'))
+
+/* ------------------------------------------------------- */
 app.all('/', (req, res) => {
     res.send({
+        message: 'WELCOME TO BLOG API',
         session:req.session,
-        message: 'WELCOME TO BLOG API'
+        user: req.user,
+        isLogin: (req.user ? true : false)
     })
 })
 /* ------------------------------------------------------- */

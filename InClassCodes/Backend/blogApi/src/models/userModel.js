@@ -49,7 +49,8 @@ const UserSchema = new Schema({
         trim: true,
         required: [true, 'password zorunludur'],
         // set: (password) => passwordEncrypt(password)
-        set: passwordEncrypt
+        set: (password) => (password.length >= 8 ? passwordEncrypt(password) : 'wrong'),
+        validate: (password) => (password!= 'wrong')
 
     },
 

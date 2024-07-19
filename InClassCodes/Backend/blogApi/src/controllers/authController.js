@@ -18,12 +18,22 @@ module.exports.auth = {
         if (email && password) {
             const user = await User.findOne({ email })
             if (user) {
-                
+
                 if (user.password == passwordEncrypt(password)) {
                     console.log(user)
                     // req.session.email = email
                     req.session._id = user._id
                     req.session.password = user.password
+
+                    /* SESSION */
+
+                    /* COOKIE */
+                    if (req?.body.remindMe == true) {
+                        req.session.remindMe = true
+                        // set MaxAge to 3 days
+                        req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3
+                    }
+                    /* COOKIE */
 
                     res.status(200).send({
                         error: false,
