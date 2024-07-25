@@ -7,11 +7,17 @@ const router = require("express").Router();
 
 const token = require("../controllers/token.controller");
 
-/* ------------------------------------------------------- */
-router.route("/").get(token.list).post(token.create);
+const { isAdmin } = require("../middlewares/permissions")
 
-router
-  .route("/:id")
+/* ------------------------------------------------------- */
+
+router.use(isAdmin)
+
+router.route("/")
+  .get(token.list)
+  .post(token.create);
+
+router.route("/:id")
   .get(token.read)
   .put(token.update)
   .patch(token.update)

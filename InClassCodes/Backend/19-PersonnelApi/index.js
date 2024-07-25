@@ -40,7 +40,32 @@ app.use(
     //   }
   }),
 );
+/* ------------------------------------------------------- */
+// LOGGER
 
+const morgan = require('morgan')
+
+// app.use(morgan('tiny'))
+// app.use(morgan('short'))
+// app.use(morgan('dev'))
+// app.use(morgan('common'))
+// app.use(morgan('combined'))
+// Custom log:
+// app.use(morgan('TIME=":date[iso]" - URL=":url" - Method=":method" - IP=":remote-addr" - Ref=":referrer" - Status=":status" - Sign=":user-agent" (:response-time[digits] ms)'))
+
+
+// Write to File:
+
+const fs = require('node:fs')
+app.use(morgan('combined', {
+  stream: fs.createWriteStream('./access.log', { flags: 'a+' })
+}))
+
+
+
+
+
+/* ------------------------------------------------------- */
 // Authentication Middleware:
 
 app.use(require('./src/middlewares/authentication'))
@@ -54,7 +79,7 @@ app.all("/", (req, res) => {
     message: "Welcome to PERSONNEL API",
     // session: req.session,
     // isLogin: req.isLogin,
-    user:req.user
+    user: req.user
   });
 });
 
@@ -87,10 +112,10 @@ app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 // Syncronization (must be in commentLine):
 // require('./src/helpers/sync')()
 
-if (process.env.NODE_ENV == "development") {
-  return;
-  require("./src/helpers/dataCreate")()
-    .then((res) => console.log("Data synched"))
-    .catch((err) => console.error("Data could not synched"));
-}
+// if (process.env.NODE_ENV == "development") {
+//   return;
+//   require("./src/helpers/dataCreate")()
+//     .then((res) => console.log("Data synched"))
+//     .catch((err) => console.error("Data could not synched"));
+// }
 
