@@ -8,6 +8,8 @@ const Token = require("../models/token");
 const User = require("../models/user");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
 
+const jwt = require("jsonwebtoken")
+
 module.exports = {
   login: async (req, res) => {
     /*
@@ -38,6 +40,7 @@ module.exports = {
       throw new Error("This account is not active.");
     }
 
+    /* SIMPLE TOKEN */
     let tokenData = await Token.findOne({ userId: user.id });
     if (!tokenData) {
       tokenData = await Token.create({
@@ -45,14 +48,88 @@ module.exports = {
         token: passwordEncrypt(user.id + Date.now()),
       });
     }
+    /* SIMPLE TOKEN */
+
+    /* JWT */
+
+    const accessData = {
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      isActive: user.isActive,
+      isAdmin: user.isAdmin
+    }
+
+    const accessToken = jwt.sign(accessData, process.env.ACCESS_KEY, { expiresIn: '30m' })
+    const refreshData = {
+      _id: user._id,
+      password: user.password
+    }
+    const refreshToken = jwt.sign(refreshData, process.env.REFRESH_KEY, { expiresIn: '3d' })
+
     res.send({
       error: false,
       token: tokenData.token,
-      user,
+      bearer: {
+        access: accessToken,
+        refresh: refreshToken
+      }
+
     });
   },
 
-  // CRUD:
+  refresh: async (req, res) => {
+    /*
+            #swagger.tags = ["Authentication"]
+            #swagger.summary = "Refresh"
+            #swagger.description = 'Refresh with refreshToken for get accessToken'
+            #swagger.parameters["body"] = {
+                in: "body",
+                required: true,
+                schema: {
+                    "bearer" : {
+                    refresh: '...refresh_token...
+                    }
+                }
+            }
+        */
+
+    const refreshToken = req.body?.bearer?.refresh
+    if (refreshToken) {
+      const refreshData = await jwt.verify(refreshToken, process.env.REFRESH_KEY)
+
+      if (refreshData) {
+        const user = await User.findOne({ _id: refreshData._id })
+        if (user && user.password == refreshData.password) {
+          if (user.isActive) {
+            res.status(200).send({
+              error: false,
+              bearer: {
+                access: jwt.sign(user.toJSON(), process.env.ACCESS_KEY, {expiresIn:"30m"})
+              }
+            })
+
+          } else {
+            res.errorStatusCode = 401
+            throw new Error('This account is not active')
+          }
+
+        } else {
+          res.errorStatusCode = 401
+          throw new Error('wrong id or password')
+        }
+
+      } else {
+        res.errorStatusCode = 401
+        throw new Error(' JWT refresh data is wrong')
+      }
+
+    } else {
+      res.errorStatusCode = 401
+      throw new Error('please enter bearer.refresh')
+    }
+
+  },
 
   logout: async (req, res) => {
     /*
@@ -62,13 +139,23 @@ module.exports = {
 
     const auth = req.headers?.authorization; //"Token token"
     const tokenKey = auth ? auth.split(" ") : null; // [ "Token", tokenKey]
-    const result = await Token.deleteOne({ token: tokenKey });
 
-    res.send({
-      error: false,
-      message: "Token deleted. Logout was OK.",
-      result,
-    });
+    if (tokenKey[0] == "Token") {
+      const result = await Token.deleteOne({ token: tokenKey });
+
+      res.send({
+        error: false,
+        message: "Token deleted. Logout was OK.",
+        result,
+      });
+    } else if (tokenKey[0] == "Bearer") {
+      res.send({
+        error: false,
+        message: "No need to do anything for db",
+        result,
+      });
+    }
+
   },
 };
 
