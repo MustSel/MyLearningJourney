@@ -46,6 +46,85 @@ app.use(require("./src/middlewares/authentication"));
 app.use(require("./src/middlewares/queryHandler"));
 
 /* ------------------------------------------------------- */
+// E-mail
+//Nodemailer.com
+
+// const nodemailer = require('nodemailer')
+
+// Create test account:
+
+// nodemailer.createTestAccount().then((data)=> console.log(data))
+
+/* 
+  user: 'uzjzdc3uaoi3sf73@ethereal.email',
+  pass: 'eXUmsXMUKeQJu8s5kY',
+  smtp: { host: 'smtp.ethereal.email', port: 587, secure: false },
+  imap: { host: 'imap.ethereal.email', port: 993, secure: true },
+  pop3: { host: 'pop3.ethereal.email', port: 995, secure: true },
+  web: 'https://ethereal.email',
+  mxEnabled: false
+
+*/
+
+// // Connect to MailServer/SMTP:
+// const transporter = nodemailer.createTransport({
+//   // SMTP:
+//   host: 'smtp.ethereal.email',
+//   port: 587,
+//   secure: false,
+//   auth:{
+//     user: 'uzjzdc3uaoi3sf73@ethereal.email',
+//     pass: 'eXUmsXMUKeQJu8s5kY'
+//   }
+// })
+
+// // console.log(transporter)
+
+// // SendMail:
+// transporter.sendMail({
+//   from: 'uzjzdc3uaoi3sf73@ethereal.email',
+//   to: 'mustafa.selcuk.tls@gmail.com',
+//   subject: 'Deneme',
+//   text: 'Hi man. what is going on?',
+//   html: '<p><b>Hello</b> to myself!</p>'
+// }, (err,success)=>{
+//   success ? console.log("success:", success) : console.log(err)
+// })
+
+
+// GoogleMail:
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'mustafa.selcuk.tls@gmail.com',
+//     pass: 'bjiw nsgg xsco bgxx'
+//   }
+// })
+
+// const transporter = nodemailer.createTransport({
+//   service: 'yandex',
+//   auth: {
+//     user: 'mustafa.selcuk.tls@gmail.com',
+//     pass: 'kendi parolanı gir'
+//   }
+// })
+
+
+// SendMail:
+// transporter.sendMail({
+//   from: 'mustafa.selcuk.tls@gmail.com',
+//   to: 'mustafa.selcuk.tls@gmail.com',
+//   subject: 'Deneme',
+//   text: 'Hi man. what is going on?',
+//   html: '<p><b>Hello</b> to myself!</p>'
+// }, (err,success)=>{
+//   success ? console.log("success:", success) : console.log(err)
+// })
+
+
+
+/* ------------------------------------------------------- */
 // Routes:
 
 // routes/index.js:

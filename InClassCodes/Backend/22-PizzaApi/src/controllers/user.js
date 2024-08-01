@@ -3,6 +3,8 @@
     | FULLSTACK TEAM | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 const User = require("../models/user");
+
+const sendMail = require('../helpers/sendMail')
 module.exports = {
   list: async (req, res) => {
     /*
@@ -61,6 +63,11 @@ module.exports = {
       //   throw customError;
     }
     const data = await User.create(req.body);
+    sendMail(
+      data.email,
+      'Welcome To Candy Shop',
+      ` <h1>Welcome</h1>
+      <h2>hayırlı olsun gardaş</h2>`)
     res.status(201).send({
       error: false,
       data,
