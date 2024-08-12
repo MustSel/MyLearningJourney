@@ -14,7 +14,7 @@ const permissions = require('../middlewares/permissions')
 // router.post("/login", personnel.login);
 // router.all("/logout", personnel.logout);
 
-router.use(permissions.isAdmin)
+// router.use(permissions.isAdmin)
 
 router.route("/")
   .get(personnel.list)
