@@ -7,9 +7,41 @@
 
 const User = require("../models/user")
 
+const passwordEncrypt = require('../helpers/passwordEncrypt')
+/* ------------------------------------------------------- */
+
+// data = req.body
+const checkUserEmailAndPassword = function (data) {
+
+    const isEmailValidated = data.email ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email) : true
+
+    if (isEmailValidated) {
+
+        // console.log('Email is OK')
+
+        const isPasswordValidated = data.password ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password) : true
+
+        if (isPasswordValidated) {
+
+            data.password = passwordEncrypt(data.password)
+
+            return data
+        } else {
+            // throw new Error('Password is not validated.')
+            new Error('Password is not validated.')
+        }
+    } else {
+        // throw new Error('Email is not validated.')
+        new Error('Email is not validated.')
+    }
+}
+
+
+/* ------------------------------------------------------- */
+
 module.exports = {
 
-    list: async (req,res) => {
+    list: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "List Users"
@@ -24,17 +56,17 @@ module.exports = {
             `
         */
 
-            const data = await res.getModelList(User)
+        const data = await res.getModelList(User)
 
-            res.status(200).send({
-                error: false,
-                details: await res.getModelListDetails(User),
-                data
-            })
+        res.status(200).send({
+            error: false,
+            details: await res.getModelListDetails(User),
+            data
+        })
 
     },
 
-    create: async (req,res) => {
+    create: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "Create User"
@@ -51,31 +83,31 @@ module.exports = {
             }
         */
 
-            const data = await User.create(req.body)
+        const data = await User.create(checkUserEmailAndPassword(req.body))
 
-            res.status(201).send({
-                error: false,
-                data
-            })
-        
+        res.status(201).send({
+            error: false,
+            data
+        })
+
     },
 
-    read: async (req,res) => {
+    read: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "Get Single User"
         */
 
-            const data = await User.findOne({_id:req.params.id})
+        const data = await User.findOne({ _id: req.params.id })
 
-            res.status(200).send({
-                error: false,
-                data
-            })
-        
+        res.status(200).send({
+            error: false,
+            data
+        })
+
     },
 
-    update: async (req,res) => {
+    update: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "Update User"
@@ -92,29 +124,29 @@ module.exports = {
             }
         */
 
-            const data = await User.updateOne({_id:req.params.id}, req.body, {runValidators: true})
+        const data = await User.updateOne({ _id: req.params.id }, checkUserEmailAndPassword(req.body), { runValidators: true })
 
-            res.status(202).send({
-                error: false,
-                data,
-                new: await User.findOne({_id: req.params.id})
-            })
-        
+        res.status(202).send({
+            error: false,
+            data,
+            new: await User.findOne({ _id: req.params.id })
+        })
+
     },
 
-    delete: async (req,res) => {
+    delete: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "Delete User"
         */
 
-            const data = await User.deleteOne({_id:req.params.id})
+        const data = await User.deleteOne({ _id: req.params.id })
 
-            res.status(data.deletedCount ? 204 : 404).send({
-                error: !data.deletedCount,
-                data
-            })
-        
+        res.status(data.deletedCount ? 204 : 404).send({
+            error: !data.deletedCount,
+            data
+        })
+
     }
 
 }
