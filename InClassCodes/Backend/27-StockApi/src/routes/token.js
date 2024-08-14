@@ -6,9 +6,12 @@ const router = require('express').Router()
 /* ------------------------------------------------------- */
 // routes/token:
 
-const token = require("../controllers/token")
+const token = require('../controllers/token')
+const permissions = require('../middlewares/permissions')
 
 // URL: /tokens
+
+router.use(permissions.isAdmin)
 
 router.route('/')
     .get(token.list)
@@ -20,7 +23,6 @@ router.route('/:id')
     .patch(token.update)
     .delete(token.delete)
 
-
-    // Exports:
-
-    module.exports = router
+/* ------------------------------------------------------- */
+// Exports:
+module.exports = router

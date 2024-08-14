@@ -6,9 +6,12 @@ const router = require('express').Router()
 /* ------------------------------------------------------- */
 // routes/firm:
 
-const firm = require("../controllers/firm")
+const firm = require('../controllers/firm')
+const permissions = require('../middlewares/permissions')
 
 // URL: /firms
+
+router.use(permissions.isAdmin)
 
 router.route('/')
     .get(firm.list)
@@ -20,7 +23,6 @@ router.route('/:id')
     .patch(firm.update)
     .delete(firm.delete)
 
-
-    // Exports:
-
-    module.exports = router
+/* ------------------------------------------------------- */
+// Exports:
+module.exports = router

@@ -6,9 +6,12 @@ const router = require('express').Router()
 /* ------------------------------------------------------- */
 // routes/category:
 
-const category = require("../controllers/category")
+const category = require('../controllers/category')
+const permissions = require('../middlewares/permissions')
 
 // URL: /categorys
+
+router.use(permissions.isAdmin)
 
 router.route('/')
     .get(category.list)
@@ -20,7 +23,6 @@ router.route('/:id')
     .patch(category.update)
     .delete(category.delete)
 
-
-    // Exports:
-
-    module.exports = router
+/* ------------------------------------------------------- */
+// Exports:
+module.exports = router

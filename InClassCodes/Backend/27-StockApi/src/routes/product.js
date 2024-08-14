@@ -7,8 +7,11 @@ const router = require('express').Router()
 // routes/product:
 
 const product = require('../controllers/product')
+const permissions = require('../middlewares/permissions')
 
 // URL: /products
+
+router.use(permissions.isStaff)
 
 router.route('/')
     .get(product.list)
