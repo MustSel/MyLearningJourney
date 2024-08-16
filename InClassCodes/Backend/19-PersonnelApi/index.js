@@ -9,8 +9,8 @@
 */
 
 const express = require("express");
-const { dbConnection, mongoose } = require("./configs/dbConnection");
-const serverless = require("serverless-http")
+const { dbConnection, mongoose } = require("./src/configs/dbConnection");
+
 const app = express();
 
 
@@ -45,7 +45,7 @@ app.use(
 /* ------------------------------------------------------- */
 // LOGGER
 
-const morgan = require('morgan')
+// const morgan = require('morgan')
 
 // app.use(morgan('tiny'))
 // app.use(morgan('short'))
@@ -58,10 +58,10 @@ const morgan = require('morgan')
 
 // Write to File:
 
-const fs = require('node:fs')
-app.use(morgan('combined', {
-  stream: fs.createWriteStream('./access.log', { flags: 'a+' })
-}))
+// const fs = require('node:fs')
+// app.use(morgan('combined', {
+//   stream: fs.createWriteStream('./access.log', { flags: 'a+' })
+// }))
 
 
 
@@ -70,9 +70,9 @@ app.use(morgan('combined', {
 /* ------------------------------------------------------- */
 // Authentication Middleware:
 
-app.use(require('./middlewares/authentication'))
+app.use(require('./src/middlewares/authentication'))
 // res.getModelList():
-app.use(require("./middlewares/findSearchSortPage"));
+app.use(require("./src/middlewares/findSearchSortPage"));
 
 // HomePath:
 app.all("/", (req, res) => {
@@ -86,15 +86,15 @@ app.all("/", (req, res) => {
 });
 
 // auth
-app.use("/auth", require('./routes/auth.router'))
+app.use("/auth", require('./src/routes/auth.router'))
 //departments
-app.use("/departments", require("./routes/department.router"));
+app.use("/departments", require("./src/routes/department.router"));
 
 //token
-app.use("/tokens", require("./routes/token.router"));
+app.use("/tokens", require("./src/routes/token.router"));
 
 //personnels
-app.use("/personnels", require("./routes/personnel.router"));
+app.use("/personnels", require("./src/routes/personnel.router"));
 
 //not found routes
 app.all("*", async (req, res) => {
@@ -105,10 +105,10 @@ app.all("*", async (req, res) => {
 });
 
 // errorHandler:
-app.use(require("./middlewares/errorHandler"));
+app.use(require("./src/middlewares/errorHandler"));
 
 // RUN SERVER:
-// app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
+app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
@@ -122,4 +122,3 @@ app.use(require("./middlewares/errorHandler"));
 // }
 
 
-module.exports.handler = serverless(app)
