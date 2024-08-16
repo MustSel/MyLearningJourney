@@ -11,12 +11,13 @@ const permissions = require('../middlewares/permissions')
 
 // URL: /firms
 
-router.use(permissions.isAdmin)
+// router.use(permissions.isAdmin)
 
 router.route('/')
-    .get(firm.list)
-    .post(firm.create)
+    .get(permissions.isLogin, firm.list)
+    .post(permissions.isAdmin, firm.create)
 
+router.param('id', permissions.isAdmin);
 router.route('/:id')
     .get(firm.read)
     .put(firm.update)

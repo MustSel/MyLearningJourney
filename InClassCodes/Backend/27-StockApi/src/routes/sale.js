@@ -17,7 +17,7 @@ router.route('/')
 
 router.route('/:id')
     .get(permissions.isLogin, sale.read)
-    .put(permissions.isStaff, sale.update)
+    .put(permissions.isLogin, sale.update)
     .patch(permissions.isStaff, sale.update)
     .delete(permissions.isStaff, sale.delete)
 

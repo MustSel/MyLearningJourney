@@ -11,7 +11,7 @@ const permissions = require('../middlewares/permissions')
 
 // URL: /products
 
-router.use(permissions.isStaff)
+router.use(permissions.isLogin)
 
 router.route('/')
     .get(product.list)

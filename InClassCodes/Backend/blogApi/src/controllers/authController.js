@@ -20,7 +20,7 @@ module.exports.auth = {
             if (user) {
 
                 if (user.password == passwordEncrypt(password)) {
-                    console.log(user)
+                    
                     // req.session.email = email
                     req.session._id = user._id
                     req.session.password = user.password

@@ -17,7 +17,7 @@ module.exports= {
 
         if(username && password) {
             const user = await Personnel.findOne({username})
-
+            
             if(user && user.password == passwordEncrypt(password)){
                 if(user.isActive) {
 
