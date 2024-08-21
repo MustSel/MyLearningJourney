@@ -18,14 +18,22 @@ const BrandSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-
     image: {
         type: String,
         trim: true
-    }
+    },
+    firmIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Firm'
+    }],
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    }]
 },{
     collection: 'brands',
     timestamps: true
-})
+});
+
 
 module.exports = mongoose.model('Brand', BrandSchema)

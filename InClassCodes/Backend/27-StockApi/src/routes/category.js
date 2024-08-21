@@ -11,17 +11,17 @@ const permissions = require('../middlewares/permissions')
 
 // URL: /categorys
 
-router.use(permissions.isAdmin)
+// router.use(permissions.isAdmin)
 
 router.route('/')
     .get(category.list)
-    .post(category.create)
+    .post(permissions.isAdmin, category.create)
 
 router.route('/:id')
     .get(category.read)
-    .put(category.update)
-    .patch(category.update)
-    .delete(category.delete)
+    .put(permissions.isAdmin, category.update)
+    .patch(permissions.isAdmin, category.update)
+    .delete(permissions.isAdmin, category.delete)
 
 /* ------------------------------------------------------- */
 // Exports:

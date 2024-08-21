@@ -100,22 +100,41 @@ module.exports = {
                 }
             }
         */
-        if (req.body?.quantity) {
-            // Mevcut işlemdeki adet bilgisi al:
-            const currentSale = await Sale.findOne({ _id: req.params.id })
-            // Farkı hesapla:
-            const difference = req.body.quantity - currentSale.quantity
-            // Farkı Producta yansıt:
-            const updateProduct = await Product.updateOne({ _id: currentSale.productId, quantity: { $gte: difference } }, { $inc: { quantity: -difference } })
-            // Miktar yeterli değilse hataya yönlendir:
+
+        // Set userId from logined user:
+        req.body.userId = req.user._id
+        const currentSale = await Sale.findOne({ _id: req.params.id })
+
+        // BrandID veya ProductID değiştiyse:
+        if (!req.body?.brandId.equals(currentSale.brandId) || !req.body?.productId.equals(currentSale.productId)) {
+            await Product.updateOne({ _id: currentSale.productId }, { $inc: { quantity: +currentSale.quantity } })
+
+            const updateProduct = await Product.updateOne(
+                { _id: req.body.productId, quantity: { $gte: req.body.quantity || currentSale.quantity } },
+                { $inc: { quantity: -(req.body.quantity || currentSale.quantity) } }
+            )
+
             if (updateProduct.modifiedCount == 0) {
                 res.errorStatusCode = 422
                 throw new Error('There is not enough product-quantity for this sale.')
             }
-            // productId değişmemeli:
-            req.body.productId = currentSale.productId
         }
-        // Update:
+
+        // Sadece quantity değiştiyse:
+        if (req.body?.quantity) {
+            const difference = req.body.quantity - currentSale.quantity
+            const updateProduct = await Product.updateOne(
+                { _id: currentSale.productId, quantity: { $gte: Math.abs(difference) } },
+                { $inc: { quantity: -difference } }
+            )
+
+            if (updateProduct.modifiedCount == 0) {
+                res.errorStatusCode = 422
+                throw new Error('There is not enough product-quantity for this sale.')
+            }
+        }
+
+        // Update Sale document:
         const data = await Sale.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
 
         res.status(202).send({

@@ -26,11 +26,15 @@ const FirmSchema = new mongoose.Schema({
     image: {
         type: String,
         trim: true
-    }
+    },
+    brands: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Brand'
+    }]
 },{
     collection:'firms',
     timestamps: true
-})
+});
 
 
 /* ------------------------------------------------------- */

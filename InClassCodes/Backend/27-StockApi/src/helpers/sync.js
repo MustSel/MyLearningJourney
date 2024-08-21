@@ -14,7 +14,7 @@ module.exports = async function () {
     console.log('- Database and all data DELETED!')
     /* REMOVE DATABASE */
 
-    /* User */
+    /* User *
     const User = require('../models/user')
     await User.deleteMany() // !!! Clear collection.
     await User.create({
@@ -57,60 +57,112 @@ module.exports = async function () {
     await Brand.create({
         "_id": "65343222b67e9681f937f104",
         "name": "Adidas",
-        "image": "https://1000logos.net/wp-content/uploads/2019/06/Adidas-Logo-1991.jpg"
+        "image": "https://1000logos.net/wp-content/uploads/2019/06/Adidas-Logo-1991.jpg",
+        "firmIds": ["65343222b67e9681f937f302", "65343222b67e9681f937f303"],
+        "categories": ["65343222b67e9681f937f205", "65343222b67e9681f937f206"]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f105",
         "name": "Nike",
-        "image": "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg"
+        "image": "https://i.pinimg.com/736x/33/e6/3d/33e63d5adb0da6b303a83901c8e8463a.jpg",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f310", // n11
+            "65343222b67e9681f937f315"  // Morhipo
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f107",
         "name": "Puma",
-        "image": "https://staticg.sportskeeda.com/editor/2023/03/bda84-16779522739911-1920.jpg"
+        "image": "https://staticg.sportskeeda.com/editor/2023/03/bda84-16779522739911-1920.jpg",
+        "categories": ["65343222b67e9681f937f201", "65343222b67e9681f937f202"],
+        "firmIds": [
+            "65343222b67e9681f937f304", // HEPSIBURADA
+            "65343222b67e9681f937f305"  // Trendyol
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f108",
         "name": "Lotto",
-        "image": "https://1000logos.net/wp-content/uploads/2021/05/Lotto-logo.png"
+        "image": "https://1000logos.net/wp-content/uploads/2021/05/Lotto-logo.png",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f310", // n11
+            "65343222b67e9681f937f315"  // Morhipo
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f109",
         "name": "Kinetix",
-        "image": "https://seeklogo.com/images/K/kinetix-logo-73FB3FD17D-seeklogo.com.png"
+        "image": "https://seeklogo.com/images/K/kinetix-logo-73FB3FD17D-seeklogo.com.png",
+        "categories": ["65343222b67e9681f937f201", "65343222b67e9681f937f202"],
+        "firmIds": [
+            "65343222b67e9681f937f304", // HEPSIBURADA
+            "65343222b67e9681f937f305"  // Trendyol
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f110",
         "name": "Reebok",
-        "image": "https://preview.thenewsmarket.com/Previews/RBOK/StillAssets/1920x1080/551064.png"
+        "image": "https://preview.thenewsmarket.com/Previews/RBOK/StillAssets/1920x1080/551064.png",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f302", // BOYNER
+            "65343222b67e9681f937f303"  // FLO
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f122",
         "name": "Samsung",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f310", // n11
+            "65343222b67e9681f937f315"  // Morhipo
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f123",
         "name": "Ülker",
-        "image": "https://cdn.worldvectorlogo.com/logos/ulker.svg"
+        "image": "https://cdn.worldvectorlogo.com/logos/ulker.svg",
+        "categories": ["65343222b67e9681f937f201", "65343222b67e9681f937f202"],
+        "firmIds": [
+            "65343222b67e9681f937f304", // HEPSIBURADA
+            "65343222b67e9681f937f305"  // Trendyol
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f129",
         "name": "Tommy",
-        "image": "https://i.pinimg.com/736x/d3/09/1a/d3091a1a5350fede679b2c7461b0745b.jpg"
+        "image": "https://i.pinimg.com/736x/d3/09/1a/d3091a1a5350fede679b2c7461b0745b.jpg",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f302", // BOYNER
+            "65343222b67e9681f937f303"  // FLO
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f130",
         "name": "LG",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/LG_symbol.svg/640px-LG_symbol.svg.png"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/LG_symbol.svg/640px-LG_symbol.svg.png",
+        "categories": ["65343222b67e9681f937f203", "65343222b67e9681f937f204"],
+        "firmIds": [
+            "65343222b67e9681f937f310", // n11
+            "65343222b67e9681f937f315"  // Morhipo
+        ]
     })
     await Brand.create({
         "_id": "65343222b67e9681f937f131",
         "name": "Apple",
-        "image": "https://www.tailorbrands.com/wp-content/uploads/2021/01/apple_logo_1988.jpg"
+        "image": "https://www.tailorbrands.com/wp-content/uploads/2021/01/apple_logo_1988.jpg",
+        "categories": ["65343222b67e9681f937f201", "65343222b67e9681f937f202"],
+        "firmIds": [
+            "65343222b67e9681f937f304", // HEPSIBURADA
+            "65343222b67e9681f937f305"  // Trendyol
+        ]
     })
 
-    /* Category */
+    /* Category *
     const Category = require('../models/category')
     await Category.deleteMany() // !!! Clear collection.
     await Category.create({
@@ -129,8 +181,16 @@ module.exports = async function () {
         "_id": "65343222b67e9681f937f204",
         "name": "Electronic",
     })
+    await Category.create({
+        "_id": "65343222b67e9681f937f205",
+        "name": "Clothes",
+    })
+    await Category.create({
+        "_id": "65343222b67e9681f937f206",
+        "name": "Shoes",
+    })
 
-    /* Firm */
+    /* Firm *
     const Firm = require('../models/firm')
     await Firm.deleteMany() // !!! Clear collection.
     await Firm.create({
@@ -197,7 +257,7 @@ module.exports = async function () {
         "address": "B01-Z02 Maslak Büyükdere Cad. Uso Center 245/A, 34396 Sarıyer/İstanbul, Türkiye"
     })
 
-    /* Product */
+    /* Product *
     const Product = require('../models/product')
     await Product.deleteMany() // !!! Clear collection.
     await Product.create({
@@ -236,7 +296,7 @@ module.exports = async function () {
         "stock": 0
     })
 
-    /* Purchase */
+    /* Purchase *
     const Purchase = require('../models/purchase')
     await Purchase.deleteMany() // !!! Clear collection.
     await Purchase.create({
@@ -285,7 +345,7 @@ module.exports = async function () {
         "price": 2500
     })
 
-    /* Sale */
+    /* Sale *
     const Sale = require('../models/sale')
     await Sale.deleteMany() // !!! Clear collection.
     await Sale.create({
@@ -319,7 +379,7 @@ module.exports = async function () {
         "productId": "65343222b67e9681f937f427",
         "quantity": 10,
         "price": 3500
-     })
+    })
 
     /* Finished */
     console.log('* Synchronized.')

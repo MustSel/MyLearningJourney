@@ -24,7 +24,10 @@ module.exports = {
             `
         */
 
-            const data = await res.getModelList(Brand)
+            const data = await res.getModelList(Brand, {}, [
+                {path: 'firmIds', select: 'name'},
+                {path: 'categories', select: 'name'}
+            ])
 
             res.status(200).send({
                 error: false,
@@ -62,7 +65,10 @@ module.exports = {
             #swagger.summary = "Get Single Brand"
         */
 
-            const data = await Brand.findOne({_id:req.params.id})
+            const data = await Brand.findOne({_id:req.params.id}).populate([
+                {path: 'firmIds', select: 'name'},
+                {path: 'categories', select: 'name'}
+            ])
 
             res.status(200).send({
                 error: false,
