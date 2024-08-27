@@ -14,7 +14,7 @@ module.exports = async function () {
     console.log('- Database and all data DELETED!')
     /* REMOVE DATABASE */
 
-    /* User *
+    /* User */
     const User = require('../models/user')
     await User.deleteMany() // !!! Clear collection.
     await User.create({
@@ -162,7 +162,7 @@ module.exports = async function () {
         ]
     })
 
-    /* Category *
+    /* Category */
     const Category = require('../models/category')
     await Category.deleteMany() // !!! Clear collection.
     await Category.create({
@@ -190,7 +190,7 @@ module.exports = async function () {
         "name": "Shoes",
     })
 
-    /* Firm *
+    /* Firm */
     const Firm = require('../models/firm')
     await Firm.deleteMany() // !!! Clear collection.
     await Firm.create({
@@ -257,7 +257,7 @@ module.exports = async function () {
         "address": "B01-Z02 Maslak Büyükdere Cad. Uso Center 245/A, 34396 Sarıyer/İstanbul, Türkiye"
     })
 
-    /* Product *
+    /* Product */
     const Product = require('../models/product')
     await Product.deleteMany() // !!! Clear collection.
     await Product.create({
@@ -296,7 +296,7 @@ module.exports = async function () {
         "stock": 0
     })
 
-    /* Purchase *
+    /* Purchase */
     const Purchase = require('../models/purchase')
     await Purchase.deleteMany() // !!! Clear collection.
     await Purchase.create({
@@ -345,7 +345,7 @@ module.exports = async function () {
         "price": 2500
     })
 
-    /* Sale *
+    /* Sale */
     const Sale = require('../models/sale')
     await Sale.deleteMany() // !!! Clear collection.
     await Sale.create({

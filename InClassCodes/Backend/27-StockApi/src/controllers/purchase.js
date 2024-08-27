@@ -3,7 +3,7 @@
     | FULLSTACK TEAM | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 // Purchase Controllers:
-
+const { mongoose } = require("../configs/dbConnection")
 const Purchase = require('../models/purchase')
 const Product = require('../models/product')
 
@@ -88,54 +88,65 @@ module.exports = {
                 }
             }
         */
-
-        // Set userId from logged-in user:
-        req.body.userId = req.user._id
-
-        const currentPurchase = await Purchase.findOne({ _id: req.params.id })
-
-        // firmId, brandId veya productId değiştiyse:
-        if (!req.body?.firmId.equals(currentPurchase.firmId) ||
-            !req.body?.brandId.equals(currentPurchase.brandId) ||
-            !req.body?.productId.equals(currentPurchase.productId)) {
-
-            // Eski product'tan quantity eksilt:
-            await Product.updateOne({ _id: currentPurchase.productId }, { $inc: { quantity: -currentPurchase.quantity } })
-
-            // Yeni product'a quantity ekle:
-            const updateProduct = await Product.updateOne(
-                { _id: req.body.productId },
-                { $inc: { quantity: req.body.quantity || currentPurchase.quantity } }
-            )
-
-            if (updateProduct.modifiedCount == 0) {
-                res.errorStatusCode = 422
-                throw new Error('Failed to update product quantity for the new product.')
+    
+        try {
+            // Set userId from logged-in user:
+            req.body.userId = req.user._id;
+    
+            // Get the current purchase:
+            const currentPurchase = await Purchase.findOne({ _id: req.params.id });
+            if (!currentPurchase) {
+                return res.status(404).send({ error: true, message: 'Purchase not found' });
             }
-        }
-
-        // Sadece quantity değiştiyse:
-        if (req.body?.quantity) {
-            const difference = req.body.quantity - currentPurchase.quantity
-            const updateProduct = await Product.updateOne(
-                { _id: currentPurchase.productId },
-                { $inc: { quantity: difference } }
-            )
-
-            if (updateProduct.modifiedCount == 0) {
-                res.errorStatusCode = 422
-                throw new Error('Failed to update product quantity for the current product.')
+    
+            // Convert IDs to ObjectId
+            const firmId = new mongoose.Types.ObjectId(req.body.firmId);
+            const brandId = new mongoose.Types.ObjectId(req.body.brandId);
+            const productId = new mongoose.Types.ObjectId(req.body.productId);
+    
+            // Check if firmId, brandId, or productId has changed:
+            if (!firmId.equals(currentPurchase.firmId) ||
+                !brandId.equals(currentPurchase.brandId) ||
+                !productId.equals(currentPurchase.productId)) {
+    
+                // Subtract quantity from old product:
+                await Product.updateOne({ _id: currentPurchase.productId }, { $inc: { quantity: -currentPurchase.quantity } });
+    
+                // Add quantity to new product:
+                const updateProduct = await Product.updateOne(
+                    { _id: productId },
+                    { $inc: { quantity: req.body.quantity || currentPurchase.quantity } }
+                );
+    
+                if (updateProduct.modifiedCount == 0) {
+                    return res.status(422).send({ error: true, message: 'Failed to update product quantity for the new product.' });
+                }
             }
+    
+            // If only quantity changed:
+            if (req.body?.quantity) {
+                const difference = req.body.quantity - currentPurchase.quantity;
+                const updateProduct = await Product.updateOne(
+                    { _id: currentPurchase.productId },
+                    { $inc: { quantity: difference } }
+                );
+    
+                if (updateProduct.modifiedCount == 0) {
+                    return res.status(422).send({ error: true, message: 'Failed to update product quantity for the current product.' });
+                }
+            }
+    
+            // Update Purchase document:
+            const data = await Purchase.updateOne({ _id: req.params.id }, req.body, { runValidators: true });
+    
+            res.status(202).send({
+                error: false,
+                data,
+                new: await Purchase.findOne({ _id: req.params.id })
+            });
+        } catch (error) {
+            res.status(500).send({ error: true, message: error.message });
         }
-
-        // Purchase belgesini güncelle:
-        const data = await Purchase.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
-
-        res.status(202).send({
-            error: false,
-            data,
-            new: await Purchase.findOne({ _id: req.params.id })
-        })
     },
 
     delete: async (req, res) => {

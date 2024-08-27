@@ -3,7 +3,7 @@
     | FULLSTACK TEAM | NODEJS / EXPRESS |
 ------------------------------------------------------- */
 // Sale Controllers:
-
+const { mongoose } = require('../configs/dbConnection')
 const Sale = require('../models/sale')
 const Product = require('../models/product')
 
@@ -100,49 +100,60 @@ module.exports = {
                 }
             }
         */
-
-        // Set userId from logined user:
-        req.body.userId = req.user._id
-        const currentSale = await Sale.findOne({ _id: req.params.id })
-
-        // BrandID veya ProductID değiştiyse:
-        if (!req.body?.brandId.equals(currentSale.brandId) || !req.body?.productId.equals(currentSale.productId)) {
-            await Product.updateOne({ _id: currentSale.productId }, { $inc: { quantity: +currentSale.quantity } })
-
-            const updateProduct = await Product.updateOne(
-                { _id: req.body.productId, quantity: { $gte: req.body.quantity || currentSale.quantity } },
-                { $inc: { quantity: -(req.body.quantity || currentSale.quantity) } }
-            )
-
-            if (updateProduct.modifiedCount == 0) {
-                res.errorStatusCode = 422
-                throw new Error('There is not enough product-quantity for this sale.')
+    
+        try {
+            // Set userId from logged-in user:
+            req.body.userId = req.user._id;
+    
+            // Get the current sale:
+            const currentSale = await Sale.findOne({ _id: req.params.id });
+            if (!currentSale) {
+                return res.status(404).send({ error: true, message: 'Sale not found' });
             }
-        }
-
-        // Sadece quantity değiştiyse:
-        if (req.body?.quantity) {
-            const difference = req.body.quantity - currentSale.quantity
-            const updateProduct = await Product.updateOne(
-                { _id: currentSale.productId, quantity: { $gte: Math.abs(difference) } },
-                { $inc: { quantity: -difference } }
-            )
-
-            if (updateProduct.modifiedCount == 0) {
-                res.errorStatusCode = 422
-                throw new Error('There is not enough product-quantity for this sale.')
+    
+            // Convert IDs to ObjectId if they are not already
+            const brandId = new mongoose.Types.ObjectId(req.body.brandId);
+            const productId = new mongoose.Types.ObjectId(req.body.productId);
+    
+            // Check if brandId or productId has changed:
+            if (!brandId.equals(currentSale.brandId) || !productId.equals(currentSale.productId)) {
+                // Update product quantity
+                await Product.updateOne({ _id: currentSale.productId }, { $inc: { quantity: +currentSale.quantity } });
+    
+                const updateProduct = await Product.updateOne(
+                    { _id: productId, quantity: { $gte: req.body.quantity || currentSale.quantity } },
+                    { $inc: { quantity: -(req.body.quantity || currentSale.quantity) } }
+                );
+    
+                if (updateProduct.modifiedCount == 0) {
+                    return res.status(422).send({ error: true, message: 'There is not enough product quantity for this sale.' });
+                }
             }
+    
+            // If only quantity changed:
+            if (req.body?.quantity) {
+                const difference = req.body.quantity - currentSale.quantity;
+                const updateProduct = await Product.updateOne(
+                    { _id: currentSale.productId, quantity: { $gte: Math.abs(difference) } },
+                    { $inc: { quantity: -difference } }
+                );
+    
+                if (updateProduct.modifiedCount == 0) {
+                    return res.status(422).send({ error: true, message: 'There is not enough product quantity for this sale.' });
+                }
+            }
+    
+            // Update Sale document:
+            const data = await Sale.updateOne({ _id: req.params.id }, req.body, { runValidators: true });
+    
+            res.status(202).send({
+                error: false,
+                data,
+                new: await Sale.findOne({ _id: req.params.id })
+            });
+        } catch (error) {
+            res.status(500).send({ error: true, message: error.message });
         }
-
-        // Update Sale document:
-        const data = await Sale.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
-
-        res.status(202).send({
-            error: false,
-            data,
-            new: await Sale.findOne({ _id: req.params.id })
-        })
-
     },
 
     delete: async (req, res) => {

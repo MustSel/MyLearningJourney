@@ -26,7 +26,8 @@ module.exports = {
         const data = await res.getModelList(Product, {}, [
             // {path: 'categoryId', select: 'name -_id'},
             {path: 'categoryId', select: 'name'},
-            {path:'brandId', select: 'name'}
+            {path:'brandId', select: 'name'},
+            {path:'firmIds', select: 'name'}
         ])
 
         res.status(200).send({
