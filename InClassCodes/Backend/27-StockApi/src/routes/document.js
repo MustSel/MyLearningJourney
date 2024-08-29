@@ -4,6 +4,8 @@
 ------------------------------------------------------- */
 const router = require('express').Router()
 /* ------------------------------------------------------- */
+
+const path = require('path');
 // routes/document:
 
 // URL: /documents
@@ -18,8 +20,8 @@ router.all('/', (req, res) => {
 
 // JSON:
 router.use('/json', (req, res) => {
-    res.sendFile(`/swagger.json`, { root: '.' })
-})
+    res.sendFile(path.join(__dirname, '../../swagger.json'));
+});
 
 // Redoc:
 const redoc = require('redoc-express')

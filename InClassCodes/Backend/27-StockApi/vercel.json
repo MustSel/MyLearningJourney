@@ -13,7 +13,7 @@
       },
       {
         "src": "/documents/swagger",
-        "dest": "swagger.json"
+        "dest": "documents/json"
       }
     ]
   }
