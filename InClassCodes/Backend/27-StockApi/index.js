@@ -79,6 +79,13 @@ app.all('/', (req, res) => {
 app.use(require('./src/routes'))
 
 /* ------------------------------------------------------- */
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+    swaggerOptions: { persistAuthorization: true }
+}));
+
 
 // errorHandler:
 app.use(require('./src/middlewares/errorHandler'))
