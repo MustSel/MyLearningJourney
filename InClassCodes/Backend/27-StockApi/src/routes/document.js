@@ -21,9 +21,9 @@ router.all('/',(req,res)=>{
 })
 
 // JSON
-router.use('/json',(req,res)=>{
-    res.sendFile('/src/configs/swagger.json', {root:'.'})
-})
+router.use('/json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'configs', 'swagger.json'));
+});
 // Redoc:
 const redoc = require('redoc-express')
 router.use('/redoc', redoc({specUrl:'/documents/json', title:'Api docs'}))
