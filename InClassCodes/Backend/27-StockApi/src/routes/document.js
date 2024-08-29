@@ -18,10 +18,10 @@ router.all('/', (req, res) => {
     })
 })
 
-// JSON:
+// JSON
 router.use('/json', (req, res) => {
-    res.sendFile(`/src/configs/swagger.json`, { root: '.' })
-})
+    res.sendFile(path.join(__dirname, '../../swagger.json'));
+});
 
 // Redoc:
 const redoc = require('redoc-express')
