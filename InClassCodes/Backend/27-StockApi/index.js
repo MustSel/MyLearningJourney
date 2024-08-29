@@ -29,7 +29,8 @@ app.use(cors(corsOptions));
 // envVariables to process.env:
 require('dotenv').config()
 
-const PORT = process.env?.PORT
+const HOST = process.env?.HOST || '127.0.0.1'
+const PORT = process.env?.PORT || 8000
 
 // asyncErrors to errorHandler:
 require('express-async-errors')
@@ -72,7 +73,7 @@ app.all("/", (req, res) => {
 });
 
 // Routes:
-app.use("/", require("./src/routes/index.js"));
+app.use(require('./src/routes'))
 
 /* ------------------------------------------------------- */
 //swagger statics
@@ -92,7 +93,7 @@ app.use("*", (req, res) => {
 });
 
 // RUN SERVER:
-app.listen(PORT, () => console.log(`server running on: ${PORT}`))
+app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
