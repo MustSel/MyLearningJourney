@@ -28,8 +28,8 @@ app.use(cors(corsOptions));
 
 // envVariables to process.env:
 require('dotenv').config()
-const HOST = process.env?.HOST || '127.0.0.1'
-const PORT = process.env?.PORT || 8000
+
+const PORT = process.env?.PORT
 
 // asyncErrors to errorHandler:
 require('express-async-errors')
@@ -63,14 +63,13 @@ app.use(require('./src/middlewares/findSearchSortPage'))
 // Routes:
 
 // HomePath:
-app.all('/', (req, res) => {
-    res.send({
-        error: false,
-        message: 'Welcome to Stock Management API',
-        documents: ["/documents/json", "/documents/swagger", "/documents/redoc"],
-        user: req.user
-    })
-})
+app.all("/", (req, res) => {
+  res.json({
+    message: "Welcome to Stock api!",
+    documents: ["/documents/json", "/documents/swagger", "/documents/redoc"],
+    user: req.user,
+  });
+});
 
 // Routes:
 app.use(require('./src/routes'))
@@ -86,8 +85,14 @@ app.use(
 // errorHandler:
 app.use(require('./src/middlewares/errorHandler'))
 
+//not found 
+app.use("*", (req, res) => {
+  res.errorStatusCode = 400;
+  throw new Error("route not found!");
+});
+
 // RUN SERVER:
-app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
+app.listen(PORT, () => console.log(`server running on: ${PORT}`))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
