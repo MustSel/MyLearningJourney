@@ -13,7 +13,11 @@
       },
       {
         "src": "/documents/swagger",
-        "dest": "documents/json"
+        "dest": "/swagger"
+      },
+      {
+        "src": "/swagger.json",
+        "dest": "/swagger.json"
       }
     ]
   }
