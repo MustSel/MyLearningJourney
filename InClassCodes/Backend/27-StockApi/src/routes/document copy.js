@@ -18,7 +18,7 @@ router.all('/', (req, res) => {
 
 // JSON:
 router.use('/json', (req, res) => {
-    res.sendFile(`/swagger.json`, { root: '.' })
+    res.sendFile(`/src/configs/swagger.json`, { root: '.' })
 })
 
 // Redoc:
@@ -27,7 +27,7 @@ router.use('/redoc', redoc({ specUrl: '/documents/json', title: 'API Docs' }))
 
 // Swagger:
 const swaggerUi = require('swagger-ui-express')
-router.use('/swagger', swaggerUi.serve, swaggerUi.setup(require('../../swagger.json'), { swaggerOptions: { persistAuthorization: true } }))
+router.use('/swagger', swaggerUi.serve, swaggerUi.setup(require('../configs/swagger.json'), { swaggerOptions: { persistAuthorization: true } }))
 
 /* ------------------------------------------------------- */
 module.exports = router

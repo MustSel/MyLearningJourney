@@ -15,9 +15,9 @@ const permissions = require('../middlewares/permissions')
 
 router.route('/')
     .get(brand.list)
-    .post(permissions.isAdmin, brand.create)
+    .post(brand.create)
 
-router.param('id', permissions.isAdmin);
+// router.param('id', permissions.isAdmin);
 router.route('/:id')
     .get(brand.read)
     .put(brand.update)

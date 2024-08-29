@@ -5,9 +5,22 @@
 const express = require('express')
 const app = express()
 const cors = require("cors")
-app.use(cors({
-    origin: "https://stock-app-beryl-theta.vercel.app"
-}))
+// app.use(cors({
+//     origin: "https://stock-app-beryl-theta.vercel.app"
+// }))
+
+const whitelist = ['https://stock-app-beryl-theta.vercel.app', 'http://localhost:3000'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 /* ------------------------------------------------------- */
 // Required Modules:
