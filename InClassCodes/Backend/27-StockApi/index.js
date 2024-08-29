@@ -5,6 +5,7 @@
 const express = require('express')
 const app = express()
 const cors = require("cors")
+const path = require('path');
 // app.use(cors({
 //     origin: "https://stock-app-beryl-theta.vercel.app"
 // }))
@@ -79,12 +80,11 @@ app.all('/', (req, res) => {
 app.use(require('./src/routes'))
 
 /* ------------------------------------------------------- */
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
-
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
-    swaggerOptions: { persistAuthorization: true }
-}));
+//swagger statics
+app.use(
+  "/swagger",
+  express.static(path.join(__dirname, "node_modules", "swagger-ui-dist"))
+);
 
 
 // errorHandler:

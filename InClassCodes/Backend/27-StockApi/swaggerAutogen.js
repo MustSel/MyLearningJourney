@@ -18,7 +18,7 @@ const document = {
 		contact: { name: packageJson.author, email: "developer@CourseName.com" },
 		license: { name: packageJson.license, },
 	},
-	host: `${HOST}:${PORT}`,
+	host: `${HOST}${process.env.NODE_ENV === 'development' ? (":"+ PORT) : ""}`,
 	basePath: '/',
 	schemes: ['http', 'https'],
 	consumes: ["application/json"],
