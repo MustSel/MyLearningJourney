@@ -10,11 +10,13 @@ const router = require('express').Router()
 
 // URL: /documents
 
-router.all('/', (req, res) => {
-    res.send({
-        swagger: "/documents/swagger",
-        redoc: "/documents/redoc",
-        json: "/documents/json",
+router.all('/',(req,res)=>{
+    res.json({
+        documents: {
+            json: '/documents/json',
+            swagger:'/documents/swagger',
+            redoc:'/documents/redoc',
+        }
     })
 })
 
