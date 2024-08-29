@@ -27,9 +27,14 @@ router.use('/json', (req, res) => {
 const redoc = require('redoc-express')
 router.use('/redoc', redoc({ specUrl: '/documents/json', title: 'API Docs' }))
 
-// Swagger:
-const swaggerUi = require('swagger-ui-express')
-router.use('/swagger', swaggerUi.serve, swaggerUi.setup(require('../../swagger.json'), { swaggerOptions: { persistAuthorization: true } }))
+// // Swagger:
+// const swaggerUi = require('swagger-ui-express')
+// router.use('/swagger', swaggerUi.serve, swaggerUi.setup(require('../../swagger.json'), { swaggerOptions: { persistAuthorization: true } }))
 
+// Swagger:
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../../swagger.json');
+
+router.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 /* ------------------------------------------------------- */
 module.exports = router
