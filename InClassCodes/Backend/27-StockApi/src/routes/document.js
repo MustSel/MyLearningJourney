@@ -20,7 +20,7 @@ router.all('/', (req, res) => {
 
 // JSON
 router.use('/json', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../swagger.json'));
+    res.sendFile(path.join(__dirname, '../configs/swagger.json'));
 });
 
 // Redoc:
